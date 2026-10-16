@@ -1,0 +1,397 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #40343A;
+    font-size: 13px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 22px 5%;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    color: #583B45;
+}
+
+.logo span {
+    color: #D982A0;
+}
+
+header input {
+    width: 38%;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 25px;
+    background-color: #F1EAF3;
+    outline: none;
+}
+
+.icones {
+    display: flex;
+    gap: 12px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.icones button {
+    border: none;
+    background: none;
+    color: #8E4A63;
+    font-size: 18px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 12px;
+}
+
+nav a {
+    color: #40343A;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+nav a:hover {
+    color: #D982A0;
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+    background-color: #F3D6DF;
+    min-height: 250px;
+}
+
+.texto-banner {
+    width: 52%;
+    padding: 35px 5%;
+}
+
+.subtitulo {
+    margin-bottom: 10px;
+    color: #A66A80;
+    font-size: 12px;
+}
+
+.texto-banner h2 {
+    margin-bottom: 15px;
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #513943;
+}
+
+.texto-banner p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.botao {
+    display: inline-block;
+    padding: 11px 22px;
+    border-radius: 25px;
+    background-color: #D982A0;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.banner > img {
+    width: 48%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.categorias {
+    padding: 30px 5% 15px;
+}
+
+.categorias h2,
+.titulo-secao h2 {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.lista-categorias {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin-top: 20px;
+}
+
+.lista-categorias a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    color: #40343A;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.lista-categorias span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    background-color: #F3D6DF;
+    color: #8E4A63;
+    font-size: 22px;
+}
+
+.area-produtos {
+    padding: 20px 5%;
+}
+
+.titulo-secao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.titulo-secao a {
+    color: #A66A80;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.lista-produtos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.produto {
+    min-width: 0;
+    padding: 8px;
+    border: 1px solid #F0E5E8;
+    border-radius: 7px;
+}
+
+.foto-produto {
+    position: relative;
+}
+
+.foto-produto img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.favorito {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 23px;
+    height: 23px;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    color: #D982A0;
+    font-size: 17px;
+}
+
+.categoria-produto {
+    margin-top: 10px;
+    color: #8E777F;
+    font-size: 10px;
+}
+
+.produto h3 {
+    margin: 5px 0;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.produto .preco {
+    margin: 7px 0;
+    font-weight: bold;
+    font-size: 12px;
+    color: #40343A;
+}
+
+.adicionar {
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #E8C7D3;
+    border-radius: 15px;
+    background-color: white;
+    color: #8E4A63;
+    font-size: 11px;
+}
+
+.adicionar:hover {
+    background-color: #F3D6DF;
+}
+
+.banner-beleza {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 35px;
+    padding: 20px 5%;
+    background-color: #FBE9EC;
+}
+
+.banner-beleza div {
+    flex: 1;
+}
+
+.banner-beleza h2 {
+    margin-bottom: 8px;
+    font-family: Georgia, serif;
+    font-size: 23px;
+    font-weight: normal;
+}
+
+.banner-beleza p {
+    margin-bottom: 8px;
+}
+
+.banner-beleza a {
+    color: #A66A80;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.banner-beleza img {
+    width: 24%;
+    height: 110px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 40px 6%;
+    border-bottom: 1px solid #F0E5E8;
+}
+
+footer h3 {
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+footer p {
+    margin: 10px 0;
+    color: #9C858E;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+footer a {
+    display: block;
+    margin-bottom: 10px;
+    color: #9C858E;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+footer input {
+    width: 75%;
+    padding: 9px;
+    border: 1px solid #F0DDE3;
+    border-radius: 20px;
+}
+
+footer button {
+    padding: 9px;
+    border: none;
+    border-radius: 50%;
+    background-color: #8E4A63;
+    color: white;
+}
+
+@media (max-width: 700px) {
+    header {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    header input {
+        order: 3;
+        width: 100%;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .texto-banner {
+        padding: 20px;
+    }
+
+    .texto-banner h2 {
+        font-size: 27px;
+    }
+
+    .banner > img {
+        height: 220px;
+    }
+
+    .lista-produtos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .foto-produto img {
+        height: 180px;
+    }
+
+    .banner-beleza {
+        flex-wrap: wrap;
+    }
+
+    .banner-beleza div {
+        min-width: 100%;
+    }
+
+    .banner-beleza img {
+        width: 47%;
+    }
+
+    footer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    .lista-categorias {
+        gap: 18px;
+    }
+
+    .foto-produto img {
+        height: 140px;
+    }
+
+    footer {
+        grid-template-columns: 1fr;
+    }
+}
