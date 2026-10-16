@@ -10,214 +10,316 @@
 <body>
 
     <header>
-        <h1 class="logo">LUNNA<span>☾</span></h1>
+        <a href="#" class="logo" onclick="mostrarTela('inicio'); return false;">
+            <img src="logo.png" alt="Logo LUNNA" class="imagem-logo"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+            <span class="nome-logo" style="display:none;">LUNNA</span>
+        </a>
 
-        <input type="text" id="pesquisa" placeholder="Buscar produtos...">
+        <input type="search" id="pesquisa" placeholder="Buscar produtos...">
+        <button class="botao-pesquisa" onclick="pesquisarProduto()">Buscar</button>
 
         <div class="icones">
-            <button onclick="alert('Área de favoritos em desenvolvimento!')">♡</button>
-            <button onclick="mostrarCarrinho()">♧</button>
-            <button onclick="mostrarCarrinho()">🛒</button>
+            <button onclick="mostrarFavoritos()" aria-label="Favoritos">♡</button>
+            <button onclick="mostrarCarrinho()" aria-label="Carrinho">
+                🛒 <span id="quantidade-carrinho">0</span>
+            </button>
         </div>
     </header>
 
     <nav>
-        <a href="#categorias">Categorias</a>
-        <a href="#produtos">Ofertas</a>
-        <a href="#beleza">Cupons</a>
-        <a href="#rodape">Informações</a>
-        <a href="#rodape">Contato</a>
+        <a href="#" onclick="mostrarTela('inicio'); return false;">Início</a>
+        <a href="#" onclick="filtrarCategoria('todos'); return false;">Todos os produtos</a>
+        <a href="#" onclick="filtrarCategoria('Roupas'); return false;">Roupas</a>
+        <a href="#" onclick="filtrarCategoria('Calçados'); return false;">Calçados</a>
+        <a href="#" onclick="filtrarCategoria('Acessórios'); return false;">Acessórios</a>
+        <a href="#" onclick="filtrarCategoria('Beleza'); return false;">Beleza</a>
     </nav>
 
     <main>
-        <section class="banner" id="inicio">
-            <div class="texto-banner">
-                <p class="subtitulo">Nova coleção</p>
-                <h2>Seu estilo,<br>do seu jeito.</h2>
-                <p>Roupas, acessórios e beleza para todos os seus momentos.</p>
-                <a href="#produtos" class="botao">Conhecer agora </a>
-            </div>
+        <!-- PÁGINA INICIAL -->
+        <section id="tela-inicio" class="tela">
+            <section class="banner">
+                <div class="texto-banner">
+                    <p class="subtitulo">NOVA COLEÇÃO</p>
+                    <h1>Seu estilo,<br>do seu jeito.</h1>
+                    <p>Roupas, acessórios e beleza para todos os seus momentos.</p>
+                    <button class="botao" onclick="filtrarCategoria('todos')">
+                        Conhecer agora
+                    </button>
+                </div>
 
-            <img
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80"
-                alt="Mulheres explorando a moda"
-            >
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80"
+                     alt="Inspiração de moda">
+            </section>
+
+            <section class="categorias">
+                <h2>Compre por categoria</h2>
+                <div class="lista-categorias">
+                    <button onclick="filtrarCategoria('Roupas')">♧<span>Roupas</span></button>
+                    <button onclick="filtrarCategoria('Calçados')">♙<span>Calçados</span></button>
+                    <button onclick="filtrarCategoria('Acessórios')">♡<span>Acessórios</span></button>
+                    <button onclick="filtrarCategoria('Beleza')">♢<span>Beleza</span></button>
+                </div>
+            </section>
+
+            <section class="area-produtos">
+                <div class="titulo-secao">
+                    <h2>Novidades da LUNNA</h2>
+                    <button class="link-botao" onclick="filtrarCategoria('todos')">
+                        Ver todos →
+                    </button>
+                </div>
+
+                <div class="lista-produtos">
+                    <article class="produto">
+                        <div class="foto-produto">
+                            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80"
+                                 alt="Vestido midi">
+                            <button class="favorito" onclick="favoritar(this, 'Vestido Midi Lunna')">♡</button>
+                        </div>
+                        <p class="categoria-produto">Roupas</p>
+                        <h3>Vestido Midi Lunna</h3>
+                        <p class="preco">R$ 129,90</p>
+                        <button class="adicionar" onclick="abrirProduto()">Ver produto</button>
+                    </article>
+
+                    <article class="produto">
+                        <div class="foto-produto">
+                            <img src="https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=500&q=80"
+                                 alt="Blusa casual">
+                            <button class="favorito" onclick="favoritar(this, 'Blusa Casual')">♡</button>
+                        </div>
+                        <p class="categoria-produto">Roupas</p>
+                        <h3>Blusa Casual</h3>
+                        <p class="preco">R$ 79,90</p>
+                        <button class="adicionar" onclick="adicionarCarrinho('Blusa Casual', 79.90)">Adicionar</button>
+                    </article>
+
+                    <article class="produto">
+                        <div class="foto-produto">
+                            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=500&q=80"
+                                 alt="Bolsa tiracolo">
+                            <button class="favorito" onclick="favoritar(this, 'Bolsa Tiracolo')">♡</button>
+                        </div>
+                        <p class="categoria-produto">Acessórios</p>
+                        <h3>Bolsa Tiracolo</h3>
+                        <p class="preco">R$ 159,90</p>
+                        <button class="adicionar" onclick="adicionarCarrinho('Bolsa Tiracolo', 159.90)">Adicionar</button>
+                    </article>
+
+                    <article class="produto">
+                        <div class="foto-produto">
+                            <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=500&q=80"
+                                 alt="Produto de beleza">
+                            <button class="favorito" onclick="favoritar(this, 'Gloss Labial')">♡</button>
+                        </div>
+                        <p class="categoria-produto">Beleza</p>
+                        <h3>Gloss Labial</h3>
+                        <p class="preco">R$ 49,90</p>
+                        <button class="adicionar" onclick="adicionarCarrinho('Gloss Labial', 49.90)">Adicionar</button>
+                    </article>
+                </div>
+            </section>
+
+            <section class="banner-beleza">
+                <div>
+                    <h2>Beauty Picks</h2>
+                    <p>Cuide de você todos os dias.</p>
+                    <button class="link-botao" onclick="filtrarCategoria('Beleza')">
+                        Descubra seus favoritos →
+                    </button>
+                </div>
+                <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=500&q=80"
+                     alt="Produto de beleza">
+                <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=500&q=80"
+                     alt="Cosméticos">
+            </section>
         </section>
 
-        <section class="categorias" id="categorias">
-            <h2>Compre por categoria</h2>
+        <!-- PÁGINA DE CATEGORIAS E BUSCA -->
+        <section id="tela-categoria" class="tela escondida">
+            <p class="caminho">
+                <a href="#" onclick="mostrarTela('inicio'); return false;">Início</a> / Produtos
+            </p>
+            <h2>Explore nossos produtos</h2>
+            <p id="total-resultados">Produtos encontrados</p>
 
-            <div class="lista-categorias">
-                <a href="#roupas">
-                    <span>♧</span>
-                    Roupas
-                </a>
-                <a href="#calcados">
-                    <span>♙</span>
-                    Calçados
-                </a>
-                <a href="#acessorios">
-                    <span>♡</span>
-                    Acessórios
-                </a>
-                <a href="#beleza">
-                    <span>♢</span>
-                    Beleza
-                </a>
+            <div class="area-resultados">
+                <aside class="filtros">
+                    <h3>Filtrar por</h3>
+                    <h4>Categoria</h4>
+
+                    <label><input type="checkbox" class="filtro-categoria" value="Roupas"> Roupas</label>
+                    <label><input type="checkbox" class="filtro-categoria" value="Calçados"> Calçados</label>
+                    <label><input type="checkbox" class="filtro-categoria" value="Acessórios"> Acessórios</label>
+                    <label><input type="checkbox" class="filtro-categoria" value="Beleza"> Beleza</label>
+
+                    <h4>Preço</h4>
+                    <label><input type="checkbox" id="preco-baixo"> Até R$ 100</label>
+                </aside>
+
+                <div>
+                    <div class="ordenacao">
+                        <label for="ordenar">Ordenar por:</label>
+                        <select id="ordenar">
+                            <option value="popular">Padrão</option>
+                            <option value="menor">Menor preço</option>
+                            <option value="maior">Maior preço</option>
+                        </select>
+                    </div>
+
+                    <div class="grade-produtos" id="grade-resultados">
+                        <article class="produto resultado" data-nome="Vestido Midi Lunna" data-categoria="Roupas" data-preco="129.90">
+                            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80" alt="Vestido midi">
+                            <h3>Vestido Midi Lunna</h3>
+                            <p class="preco">R$ 129,90</p>
+                            <button class="adicionar" onclick="abrirProduto()">Ver produto</button>
+                        </article>
+
+                        <article class="produto resultado" data-nome="Blusa Casual" data-categoria="Roupas" data-preco="79.90">
+                            <img src="https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=500&q=80" alt="Blusa casual">
+                            <h3>Blusa Casual</h3>
+                            <p class="preco">R$ 79,90</p>
+                            <button class="adicionar" onclick="adicionarCarrinho('Blusa Casual', 79.90)">Adicionar</button>
+                        </article>
+
+                        <article class="produto resultado" data-nome="Bolsa Tiracolo" data-categoria="Acessórios" data-preco="159.90">
+                            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=500&q=80" alt="Bolsa tiracolo">
+                            <h3>Bolsa Tiracolo</h3>
+                            <p class="preco">R$ 159,90</p>
+                            <button class="adicionar" onclick="adicionarCarrinho('Bolsa Tiracolo', 159.90)">Adicionar</button>
+                        </article>
+
+                        <article class="produto resultado" data-nome="Gloss Labial" data-categoria="Beleza" data-preco="49.90">
+                            <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=500&q=80" alt="Gloss labial">
+                            <h3>Gloss Labial</h3>
+                            <p class="preco">R$ 49,90</p>
+                            <button class="adicionar" onclick="adicionarCarrinho('Gloss Labial', 49.90)">Adicionar</button>
+                        </article>
+                    </div>
+                </div>
             </div>
+
+            <button class="botao-voltar" onclick="mostrarTela('inicio')">
+                ← Voltar para o início
+            </button>
         </section>
 
-        <section class="area-produtos" id="produtos">
-            <div class="titulo-secao">
-                <h2>Novidades da LUNNA</h2>
-                <a href="#produtos">Ver todos →</a>
+        <!-- PÁGINA DE DETALHES -->
+        <section id="tela-produto" class="tela escondida">
+            <p class="caminho">Início / Produtos / Vestido Midi Lunna</p>
+
+            <div class="detalhes-produto">
+                <div class="fotos-produto">
+                    <div class="miniaturas">
+                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=150&q=80"
+                             alt="Foto 1" onclick="trocarFoto(this)">
+                        <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=150&q=80"
+                             alt="Foto 2" onclick="trocarFoto(this)">
+                        <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=150&q=80"
+                             alt="Foto 3" onclick="trocarFoto(this)">
+                    </div>
+
+                    <img id="foto-principal"
+                         class="foto-principal"
+                         src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80"
+                         alt="Vestido Midi Lunna">
+                </div>
+
+                <div class="informacoes-produto">
+                    <h1>Vestido Midi Lunna</h1>
+                    <p class="avaliacao">★★★★★ <span>Avaliações demonstrativas</span></p>
+                    <p class="preco-produto">R$ 129,90</p>
+                    <p class="texto-suave">ou 3x de R$ 43,30 sem juros</p>
+                    <p class="descricao-curta">Vestido midi delicado, ideal para diferentes ocasiões.</p>
+
+                    <h4>Cor: <span id="cor-escolhida">Rosa</span></h4>
+                    <div class="opcoes-cor">
+                        <button class="cor-opcao selecionada" style="background:#df86a7"
+                                aria-label="Rosa" onclick="selecionarCor(this, 'Rosa')"></button>
+                        <button class="cor-opcao" style="background:#f1d6df"
+                                aria-label="Rosa claro" onclick="selecionarCor(this, 'Rosa claro')"></button>
+                        <button class="cor-opcao" style="background:#8e4a63"
+                                aria-label="Vinho" onclick="selecionarCor(this, 'Vinho')"></button>
+                        <button class="cor-opcao" style="background:#a58b7b"
+                                aria-label="Bege" onclick="selecionarCor(this, 'Bege')"></button>
+                    </div>
+
+                    <h4>Tamanho: <span id="tamanho-escolhido">M</span></h4>
+                    <div class="opcoes-tamanho">
+                        <button onclick="selecionarTamanho(this, 'PP')">PP</button>
+                        <button onclick="selecionarTamanho(this, 'P')">P</button>
+                        <button class="selecionado" onclick="selecionarTamanho(this, 'M')">M</button>
+                        <button onclick="selecionarTamanho(this, 'G')">G</button>
+                        <button onclick="selecionarTamanho(this, 'GG')">GG</button>
+                    </div>
+
+                    <h4>Quantidade</h4>
+                    <div class="quantidade">
+                        <button onclick="alterarQuantidade(-1)">−</button>
+                        <span id="quantidade-produto">1</span>
+                        <button onclick="alterarQuantidade(1)">+</button>
+                    </div>
+
+                    <button class="botao-comprar" onclick="adicionarVestido()">
+                        Adicionar ao carrinho
+                    </button>
+                    <button class="botao-secundario" onclick="comprarAgora()">
+                        Comprar agora
+                    </button>
+                    <p class="beneficio">♡ Troca fácil</p>
+                </div>
             </div>
 
-            <div class="lista-produtos">
+            <section class="descricao-produto">
+                <details>
+                    <summary>Descrição</summary>
+                    <p>Vestido midi para compor looks delicados e confortáveis.</p>
+                </details>
+                <details>
+                    <summary>Características</summary>
+                    <p>Confira a cor e o tamanho escolhidos antes de adicionar ao carrinho.</p>
+                </details>
+                <details>
+                    <summary>Avaliações</summary>
+                    <p>As avaliações são demonstrativas neste projeto escolar.</p>
+                </details>
+            </section>
 
-                <article class="produto" id="roupas">
-                    <div class="foto-produto">
-                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80"
-                            alt="Vestido midi">
-                        <button class="favorito" onclick="favoritar(this)">♡</button>
-                    </div>
-                    <p class="categoria-produto">Vestidos</p>
-                    <h3>Vestido Midi</h3>
-                    <p class="preco">R$ 129,90</p>
-                    <button class="adicionar" onclick="adicionarCarrinho('Vestido Midi', 129.90)">Adicionar</button>
-                </article>
-
-                <article class="produto">
-                    <div class="foto-produto">
-                        <img src="https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=500&q=80"
-                            alt="Blusa casual">
-                        <button class="favorito" onclick="favoritar(this)">♡</button>
-                    </div>
-                    <p class="categoria-produto">Blusas</p>
-                    <h3>Blusa Casual</h3>
-                    <p class="preco">R$ 79,90</p>
-                    <button class="adicionar" onclick="adicionarCarrinho('Blusa Casual', 79.90)">Adicionar</button>
-                </article>
-
-                <article class="produto" id="acessorios">
-                    <div class="foto-produto">
-                        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=500&q=80"
-                            alt="Bolsa rosa">
-                        <button class="favorito" onclick="favoritar(this)">♡</button>
-                    </div>
-                    <p class="categoria-produto">Bolsas</p>
-                    <h3>Bolsa Tiracolo</h3>
-                    <p class="preco">R$ 159,90</p>
-                    <button class="adicionar" onclick="adicionarCarrinho('Bolsa Tiracolo', 159.90)">Adicionar</button>
-                </article>
-
-                <article class="produto" id="beleza">
-                    <div class="foto-produto">
-                        <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=500&q=80"
-                            alt="Gloss labial">
-                        <button class="favorito" onclick="favoritar(this)">♡</button>
-                    </div>
-                    <p class="categoria-produto">Maquiagem</p>
-                    <h3>Gloss Labial</h3>
-                    <p class="preco">R$ 49,90</p>
-                    <button class="adicionar" onclick="adicionarCarrinho('Gloss Labial', 49.90)">Adicionar</button>
-                </article>
-
-                <article class="produto" id="calcados">
-                    <div class="foto-produto">
-                        <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=500&q=80"
-                            alt="Sandália feminina">
-                        <button class="favorito" onclick="favoritar(this)">♡</button>
-                    </div>
-                    <p class="categoria-produto">Calçados</p>
-                    <h3>Sandália Casual</h3>
-                    <p class="preco">R$ 119,90</p>
-                    <button class="adicionar" onclick="adicionarCarrinho('Sandália Casual', 119.90)">Adicionar</button>
-                </article>
-
-                <article class="produto">
-                    <div class="foto-produto">
-                        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=500&q=80"
-                            alt="Look moderno">
-                        <button class="favorito" onclick="favoritar(this)">♡</button>
-                    </div>
-                    <p class="categoria-produto">Moda</p>
-                    <h3>Look Moderno</h3>
-                    <p class="preco">R$ 149,90</p>
-                    <button class="adicionar" onclick="adicionarCarrinho('Look Moderno', 149.90)">Adicionar</button>
-                </article>
-
-                <article class="produto">
-                    <div class="foto-produto">
-                        <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=500&q=80"
-                            alt="Colar delicado">
-                        <button class="favorito" onclick="favoritar(this)">♡</button>
-                    </div>
-                    <p class="categoria-produto">Acessórios</p>
-                    <h3>Colar Delicado</h3>
-                    <p class="preco">R$ 59,90</p>
-                    <button class="adicionar" onclick="adicionarCarrinho('Colar Delicado', 59.90)">Adicionar</button>
-                </article>
-
-                <article class="produto">
-                    <div class="foto-produto">
-                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=500&q=80"
-                            alt="Kit de beleza">
-                        <button class="favorito" onclick="favoritar(this)">♡</button>
-                    </div>
-                    <p class="categoria-produto">Beleza</p>
-                    <h3>Kit de Beleza</h3>
-                    <p class="preco">R$ 89,90</p>
-                    <button class="adicionar" onclick="adicionarCarrinho('Kit de Beleza', 89.90)">Adicionar</button>
-                </article>
-
-            </div>
-            <p id="mensagem"></p>
+            <button class="botao-voltar" onclick="mostrarTela('categoria')">
+                ← Voltar aos produtos
+            </button>
         </section>
 
-        <section class="banner-beleza">
-            <div>
-                <h2>Beauty Picks</h2>
-                <p>Cuide de você, todos os dias.</p>
-                <a href="#beleza">Descubra seus novos favoritos →</a>
-            </div>
-
-            <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=500&q=80"
-                alt="Produto de beleza">
-
-            <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=500&q=80"
-                alt="Cosméticos para cuidados pessoais">
-        </section>
+        <p id="mensagem" aria-live="polite"></p>
     </main>
 
     <footer id="rodape">
         <div>
-            <h2 class="logo">LUNNA<span>☾</span></h2>
-            <p>Seu estilo, seu jeito. Criando momentos únicos através da moda.</p>
-            <p>◎ ♡ ♪</p>
+            <a href="#" class="logo logo-rodape" onclick="mostrarTela('inicio'); return false;">
+                LUNNA ☾
+            </a>
+            <p>Seu estilo, seu jeito.</p>
         </div>
 
         <div>
             <h3>Institucional</h3>
-            <a href="#inicio">Sobre nós</a>
-            <a href="#inicio">Nossa loja</a>
-            <a href="#inicio">Política de privacidade</a>
-            <a href="#inicio">Blog LUNNA</a>
+            <a href="#rodape">Sobre nós</a>
+            <a href="#rodape">Privacidade</a>
         </div>
 
         <div>
             <h3>Ajuda</h3>
             <a href="#rodape">Trocas e devoluções</a>
-            <a href="#rodape">Termos de uso</a>
-            <a href="#rodape">Privacidade</a>
             <a href="#rodape">Acompanhar pedido</a>
         </div>
 
         <div>
             <h3>Newsletter</h3>
-            <p>Receba novidades e nossas ofertas exclusivas.</p>
-            <input type="email" placeholder="Seu e-mail">
-            <button onclick="alert('Cadastro demonstrativo!')">➜</button>
+            <p>Receba novidades e ofertas.</p>
+            <input type="email" id="email-newsletter" placeholder="Seu e-mail">
+            <button onclick="inscreverNewsletter()">➜</button>
         </div>
     </footer>
 
