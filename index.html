@@ -293,6 +293,123 @@
         </section>
 
         <p id="mensagem" aria-live="polite"></p>
+
+        
+<!-- TELA DO CARRINHO -->
+<section id="tela-carrinho" class="tela escondida">
+    <p class="caminho">
+        <a href="#" onclick="mostrarTela('inicio'); return false;">Início</a>
+        / Carrinho
+    </p>
+
+    <h2>Meu carrinho</h2>
+    <p class="texto-suave">Confira seus produtos antes de continuar.</p>
+
+    <div class="conteudo-carrinho">
+        <div id="itens-carrinho"></div>
+
+        <aside class="resumo-compra">
+            <h3>Resumo da compra</h3>
+            <p>Subtotal: <strong id="subtotal-carrinho">R$ 0,00</strong></p>
+            <p>Frete: <strong>A calcular</strong></p>
+            <div class="linha-total">
+                <span>Total parcial</span>
+                <strong id="total-carrinho">R$ 0,00</strong>
+            </div>
+
+            <button class="botao-comprar" onclick="irParaCheckout()">
+                Continuar para entrega
+            </button>
+
+            <button class="botao-secundario"
+                    onclick="mostrarTela('categoria')">
+                Continuar comprando
+            </button>
+        </aside>
+    </div>
+</section>
+
+<!-- TELA DE CHECKOUT -->
+<section id="tela-checkout" class="tela escondida">
+    <p class="caminho">Início / Carrinho / Finalização</p>
+
+    <h2>Finalizar compra</h2>
+    <p class="texto-suave">
+        Preencha os dados demonstrativos para continuar.
+    </p>
+
+    <form id="form-checkout" class="form-checkout">
+        <div class="campos-checkout">
+            <label for="nome-entrega">Nome completo</label>
+            <input type="text" id="nome-entrega" required>
+
+            <label for="email-entrega">E-mail</label>
+            <input type="email" id="email-entrega" required>
+
+            <label for="cep-entrega">CEP</label>
+            <input type="text" id="cep-entrega"
+                   placeholder="00000-000" maxlength="9" required>
+
+            <label for="endereco-entrega">Endereço</label>
+            <input type="text" id="endereco-entrega" required>
+
+            <label for="numero-entrega">Número</label>
+            <input type="text" id="numero-entrega" required>
+
+            <label for="cidade-entrega">Cidade</label>
+            <input type="text" id="cidade-entrega" required>
+
+            <label for="pagamento">Forma de pagamento demonstrativa</label>
+            <select id="pagamento" required>
+                <option value="">Selecione uma opção</option>
+                <option value="Pix demonstrativo">Pix</option>
+                <option value="Cartão demonstrativo">Cartão</option>
+                <option value="Boleto demonstrativo">Boleto</option>
+            </select>
+        </div>
+
+        <div class="resumo-checkout">
+            <h3>Resumo do pedido</h3>
+            <div id="resumo-checkout"></div>
+            <p class="linha-total">
+                Total: <strong id="total-checkout">R$ 0,00</strong>
+            </p>
+        </div>
+
+        <p class="aviso-demonstrativo">
+            Esta é uma demonstração escolar. Nenhum pagamento será realizado.
+        </p>
+
+        <button type="submit" class="botao-comprar">
+            Confirmar pedido demonstrativo
+        </button>
+
+        <button type="button" class="botao-secundario"
+                onclick="mostrarCarrinho()">
+            Voltar ao carrinho
+        </button>
+    </form>
+</section>
+
+<!-- TELA DE CONFIRMAÇÃO -->
+<section id="tela-confirmacao" class="tela escondida">
+    <div class="confirmacao-pedido">
+        <div class="icone-confirmacao">✓</div>
+        <h1>Pedido confirmado!</h1>
+        <p>Obrigada por escolher a LUNNA.</p>
+        <p id="numero-pedido"></p>
+
+        <p class="aviso-demonstrativo">
+            Pedido fictício para demonstração. Não houve cobrança
+            nem envio real de produtos.
+        </p>
+
+        <button class="botao-comprar" onclick="mostrarTela('inicio')">
+            Voltar para a loja
+        </button>
+    </div>
+</section>
+
     </main>
 
     <footer id="rodape">
