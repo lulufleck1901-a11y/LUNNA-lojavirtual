@@ -6,440 +6,231 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUNNA | Moda e Beleza</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="logo" onclick="mostrarTela('inicio'); return false;">
-            <img src="logo.png" alt="Logo LUNNA" class="imagem-logo"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-            <span class="nome-logo" style="display:none;">LUNNA</span>
-        </a>
+<header class="cabecalho">
+    <a href="#" class="link-logo" onclick="mostrarTela('inicio'); return false;">
+        <img src="logo.png" alt="Logo LUNNA" class="logo-imagem">
+    </a>
 
-        <input type="search" id="pesquisa" placeholder="Buscar produtos...">
-        <button class="botao-pesquisa" onclick="pesquisarProduto()">Buscar</button>
+    <input type="search" id="pesquisa" placeholder="Buscar produtos...">
 
-        <div class="icones">
-            <button onclick="mostrarFavoritos()" aria-label="Favoritos">♡</button>
-            <button onclick="mostrarCarrinho()" aria-label="Carrinho">
-                🛒 <span id="quantidade-carrinho">0</span>
+    <div class="icones">
+        <button onclick="mostrarFavoritos()">Favoritos</button>
+        <button onclick="mostrarCarrinho()">
+            Carrinho (<span id="quantidade-carrinho">0</span>)
+        </button>
+    </div>
+</header>
+
+<nav class="menu">
+    <a href="#" onclick="mostrarTela('inicio'); return false;">Início</a>
+    <a href="#" onclick="filtrarCategoria('Roupas'); return false;">Roupas</a>
+    <a href="#" onclick="filtrarCategoria('Calçados'); return false;">Calçados</a>
+    <a href="#" onclick="filtrarCategoria('Acessórios'); return false;">Acessórios</a>
+    <a href="#" onclick="filtrarCategoria('Beleza'); return false;">Beleza</a>
+    <a href="#" onclick="mostrarTela('ajuda'); return false;">Ajuda</a>
+</nav>
+
+<main>
+    <section id="tela-inicio" class="tela">
+        <section class="banner">
+            <div class="texto-banner">
+                <p class="subtitulo">NOVA COLEÇÃO</p>
+                <h1>Seu estilo,<br>do seu jeito.</h1>
+                <p>Roupas, acessórios e beleza para todos os seus momentos.</p>
+                <button class="botao" onclick="mostrarTela('produtos')">
+                    Conhecer produtos
+                </button>
+            </div>
+
+            <div class="banner-visual">
+                <img src="logo.png" alt="Identidade visual da LUNNA">
+            </div>
+        </section>
+
+        <section class="secao">
+            <h2>Compre por categoria</h2>
+            <div class="categorias">
+                <button onclick="filtrarCategoria('Roupas')">Roupas</button>
+                <button onclick="filtrarCategoria('Calçados')">Calçados</button>
+                <button onclick="filtrarCategoria('Acessórios')">Acessórios</button>
+                <button onclick="filtrarCategoria('Beleza')">Beleza</button>
+            </div>
+        </section>
+
+        <section class="secao">
+            <h2>Seleção LUNNA</h2>
+            <div id="lista-inicial" class="produtos"></div>
+        </section>
+    </section>
+
+    <section id="tela-produtos" class="tela escondida">
+        <div class="titulo-linha">
+            <h1 id="titulo-produtos">Nossos produtos</h1>
+            <button class="botao-secundario" onclick="mostrarTela('inicio')">
+                Voltar ao início
             </button>
         </div>
-    </header>
 
-    <nav>
-        <a href="#" onclick="mostrarTela('inicio'); return false;">Início</a>
-        <a href="#" onclick="filtrarCategoria('todos'); return false;">Todos os produtos</a>
-        <a href="#" onclick="filtrarCategoria('Roupas'); return false;">Roupas</a>
-        <a href="#" onclick="filtrarCategoria('Calçados'); return false;">Calçados</a>
-        <a href="#" onclick="filtrarCategoria('Acessórios'); return false;">Acessórios</a>
-        <a href="#" onclick="filtrarCategoria('Beleza'); return false;">Beleza</a>
-    </nav>
+        <div id="lista-produtos" class="produtos"></div>
+        <p id="mensagem-produtos"></p>
+    </section>
 
-    <main>
-        <!-- PÁGINA INICIAL -->
-        <section id="tela-inicio" class="tela">
-            <section class="banner">
-                <div class="texto-banner">
-                    <p class="subtitulo">NOVA COLEÇÃO</p>
-                    <h1>Seu estilo,<br>do seu jeito.</h1>
-                    <p>Roupas, acessórios e beleza para todos os seus momentos.</p>
-                    <button class="botao" onclick="filtrarCategoria('todos')">
-                        Conhecer agora
-                    </button>
-                </div>
+    <section id="tela-detalhes" class="tela escondida">
+        <button class="botao-secundario" onclick="mostrarTela('produtos')">
+            Voltar aos produtos
+        </button>
+        <div id="detalhes-produto" class="detalhes"></div>
+    </section>
 
-                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80"
-                     alt="Inspiração de moda">
-            </section>
+    <section id="tela-favoritos" class="tela escondida">
+        <h1>Meus favoritos</h1>
+        <div id="lista-favoritos" class="produtos"></div>
+    </section>
 
-            <section class="categorias">
-                <h2>Compre por categoria</h2>
-                <div class="lista-categorias">
-                    <button onclick="filtrarCategoria('Roupas')">♧<span>Roupas</span></button>
-                    <button onclick="filtrarCategoria('Calçados')">♙<span>Calçados</span></button>
-                    <button onclick="filtrarCategoria('Acessórios')">♡<span>Acessórios</span></button>
-                    <button onclick="filtrarCategoria('Beleza')">♢<span>Beleza</span></button>
-                </div>
-            </section>
-
-            <section class="area-produtos">
-                <div class="titulo-secao">
-                    <h2>Novidades da LUNNA</h2>
-                    <button class="link-botao" onclick="filtrarCategoria('todos')">
-                        Ver todos →
-                    </button>
-                </div>
-
-                <div class="lista-produtos">
-                    <article class="produto">
-                        <div class="foto-produto">
-                            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80"
-                                 alt="Vestido midi">
-                            <button class="favorito" onclick="favoritar(this, 'Vestido Midi Lunna')">♡</button>
-                        </div>
-                        <p class="categoria-produto">Roupas</p>
-                        <h3>Vestido Midi Lunna</h3>
-                        <p class="preco">R$ 129,90</p>
-                        <button class="adicionar" onclick="abrirProduto()">Ver produto</button>
-                    </article>
-
-                    <article class="produto">
-                        <div class="foto-produto">
-                            <img src="https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=500&q=80"
-                                 alt="Blusa casual">
-                            <button class="favorito" onclick="favoritar(this, 'Blusa Casual')">♡</button>
-                        </div>
-                        <p class="categoria-produto">Roupas</p>
-                        <h3>Blusa Casual</h3>
-                        <p class="preco">R$ 79,90</p>
-                        <button class="adicionar" onclick="adicionarCarrinho('Blusa Casual', 79.90)">Adicionar</button>
-                    </article>
-
-                    <article class="produto">
-                        <div class="foto-produto">
-                            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=500&q=80"
-                                 alt="Bolsa tiracolo">
-                            <button class="favorito" onclick="favoritar(this, 'Bolsa Tiracolo')">♡</button>
-                        </div>
-                        <p class="categoria-produto">Acessórios</p>
-                        <h3>Bolsa Tiracolo</h3>
-                        <p class="preco">R$ 159,90</p>
-                        <button class="adicionar" onclick="adicionarCarrinho('Bolsa Tiracolo', 159.90)">Adicionar</button>
-                    </article>
-
-                    <article class="produto">
-                        <div class="foto-produto">
-                            <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=500&q=80"
-                                 alt="Produto de beleza">
-                            <button class="favorito" onclick="favoritar(this, 'Gloss Labial')">♡</button>
-                        </div>
-                        <p class="categoria-produto">Beleza</p>
-                        <h3>Gloss Labial</h3>
-                        <p class="preco">R$ 49,90</p>
-                        <button class="adicionar" onclick="adicionarCarrinho('Gloss Labial', 49.90)">Adicionar</button>
-                    </article>
-                </div>
-            </section>
-
-            <section class="banner-beleza">
-                <div>
-                    <h2>Beauty Picks</h2>
-                    <p>Cuide de você todos os dias.</p>
-                    <button class="link-botao" onclick="filtrarCategoria('Beleza')">
-                        Descubra seus favoritos →
-                    </button>
-                </div>
-                <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=500&q=80"
-                     alt="Produto de beleza">
-                <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=500&q=80"
-                     alt="Cosméticos">
-            </section>
-        </section>
-
-        <!-- PÁGINA DE CATEGORIAS E BUSCA -->
-        <section id="tela-categoria" class="tela escondida">
-            <p class="caminho">
-                <a href="#" onclick="mostrarTela('inicio'); return false;">Início</a> / Produtos
-            </p>
-            <h2>Explore nossos produtos</h2>
-            <p id="total-resultados">Produtos encontrados</p>
-
-            <div class="area-resultados">
-                <aside class="filtros">
-                    <h3>Filtrar por</h3>
-                    <h4>Categoria</h4>
-
-                    <label><input type="checkbox" class="filtro-categoria" value="Roupas"> Roupas</label>
-                    <label><input type="checkbox" class="filtro-categoria" value="Calçados"> Calçados</label>
-                    <label><input type="checkbox" class="filtro-categoria" value="Acessórios"> Acessórios</label>
-                    <label><input type="checkbox" class="filtro-categoria" value="Beleza"> Beleza</label>
-
-                    <h4>Preço</h4>
-                    <label><input type="checkbox" id="preco-baixo"> Até R$ 100</label>
-                </aside>
-
-                <div>
-                    <div class="ordenacao">
-                        <label for="ordenar">Ordenar por:</label>
-                        <select id="ordenar">
-                            <option value="popular">Padrão</option>
-                            <option value="menor">Menor preço</option>
-                            <option value="maior">Maior preço</option>
-                        </select>
-                    </div>
-
-                    <div class="grade-produtos" id="grade-resultados">
-                        <article class="produto resultado" data-nome="Vestido Midi Lunna" data-categoria="Roupas" data-preco="129.90">
-                            <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80" alt="Vestido midi">
-                            <h3>Vestido Midi Lunna</h3>
-                            <p class="preco">R$ 129,90</p>
-                            <button class="adicionar" onclick="abrirProduto()">Ver produto</button>
-                        </article>
-
-                        <article class="produto resultado" data-nome="Blusa Casual" data-categoria="Roupas" data-preco="79.90">
-                            <img src="https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=500&q=80" alt="Blusa casual">
-                            <h3>Blusa Casual</h3>
-                            <p class="preco">R$ 79,90</p>
-                            <button class="adicionar" onclick="adicionarCarrinho('Blusa Casual', 79.90)">Adicionar</button>
-                        </article>
-
-                        <article class="produto resultado" data-nome="Bolsa Tiracolo" data-categoria="Acessórios" data-preco="159.90">
-                            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=500&q=80" alt="Bolsa tiracolo">
-                            <h3>Bolsa Tiracolo</h3>
-                            <p class="preco">R$ 159,90</p>
-                            <button class="adicionar" onclick="adicionarCarrinho('Bolsa Tiracolo', 159.90)">Adicionar</button>
-                        </article>
-
-                        <article class="produto resultado" data-nome="Gloss Labial" data-categoria="Beleza" data-preco="49.90">
-                            <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=500&q=80" alt="Gloss labial">
-                            <h3>Gloss Labial</h3>
-                            <p class="preco">R$ 49,90</p>
-                            <button class="adicionar" onclick="adicionarCarrinho('Gloss Labial', 49.90)">Adicionar</button>
-                        </article>
-                    </div>
-                </div>
-            </div>
-
-            <button class="botao-voltar" onclick="mostrarTela('inicio')">
-                ← Voltar para o início
-            </button>
-        </section>
-
-        <!-- PÁGINA DE DETALHES -->
-        <section id="tela-produto" class="tela escondida">
-            <p class="caminho">Início / Produtos / Vestido Midi Lunna</p>
-
-            <div class="detalhes-produto">
-                <div class="fotos-produto">
-                    <div class="miniaturas">
-                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=150&q=80"
-                             alt="Foto 1" onclick="trocarFoto(this)">
-                        <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=150&q=80"
-                             alt="Foto 2" onclick="trocarFoto(this)">
-                        <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=150&q=80"
-                             alt="Foto 3" onclick="trocarFoto(this)">
-                    </div>
-
-                    <img id="foto-principal"
-                         class="foto-principal"
-                         src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80"
-                         alt="Vestido Midi Lunna">
-                </div>
-
-                <div class="informacoes-produto">
-                    <h1>Vestido Midi Lunna</h1>
-                    <p class="avaliacao">★★★★★ <span>Avaliações demonstrativas</span></p>
-                    <p class="preco-produto">R$ 129,90</p>
-                    <p class="texto-suave">ou 3x de R$ 43,30 sem juros</p>
-                    <p class="descricao-curta">Vestido midi delicado, ideal para diferentes ocasiões.</p>
-
-                    <h4>Cor: <span id="cor-escolhida">Rosa</span></h4>
-                    <div class="opcoes-cor">
-                        <button class="cor-opcao selecionada" style="background:#df86a7"
-                                aria-label="Rosa" onclick="selecionarCor(this, 'Rosa')"></button>
-                        <button class="cor-opcao" style="background:#f1d6df"
-                                aria-label="Rosa claro" onclick="selecionarCor(this, 'Rosa claro')"></button>
-                        <button class="cor-opcao" style="background:#8e4a63"
-                                aria-label="Vinho" onclick="selecionarCor(this, 'Vinho')"></button>
-                        <button class="cor-opcao" style="background:#a58b7b"
-                                aria-label="Bege" onclick="selecionarCor(this, 'Bege')"></button>
-                    </div>
-
-                    <h4>Tamanho: <span id="tamanho-escolhido">M</span></h4>
-                    <div class="opcoes-tamanho">
-                        <button onclick="selecionarTamanho(this, 'PP')">PP</button>
-                        <button onclick="selecionarTamanho(this, 'P')">P</button>
-                        <button class="selecionado" onclick="selecionarTamanho(this, 'M')">M</button>
-                        <button onclick="selecionarTamanho(this, 'G')">G</button>
-                        <button onclick="selecionarTamanho(this, 'GG')">GG</button>
-                    </div>
-
-                    <h4>Quantidade</h4>
-                    <div class="quantidade">
-                        <button onclick="alterarQuantidade(-1)">−</button>
-                        <span id="quantidade-produto">1</span>
-                        <button onclick="alterarQuantidade(1)">+</button>
-                    </div>
-
-                    <button class="botao-comprar" onclick="adicionarVestido()">
-                        Adicionar ao carrinho
-                    </button>
-                    <button class="botao-secundario" onclick="comprarAgora()">
-                        Comprar agora
-                    </button>
-                    <p class="beneficio">♡ Troca fácil</p>
-                </div>
-            </div>
-
-            <section class="descricao-produto">
-                <details>
-                    <summary>Descrição</summary>
-                    <p>Vestido midi para compor looks delicados e confortáveis.</p>
-                </details>
-                <details>
-                    <summary>Características</summary>
-                    <p>Confira a cor e o tamanho escolhidos antes de adicionar ao carrinho.</p>
-                </details>
-                <details>
-                    <summary>Avaliações</summary>
-                    <p>As avaliações são demonstrativas neste projeto escolar.</p>
-                </details>
-            </section>
-
-            <button class="botao-voltar" onclick="mostrarTela('categoria')">
-                ← Voltar aos produtos
-            </button>
-        </section>
-
-        <p id="mensagem" aria-live="polite"></p>
-
-        
-<!-- TELA DO CARRINHO -->
-<section id="tela-carrinho" class="tela escondida">
-    <p class="caminho">
-        <a href="#" onclick="mostrarTela('inicio'); return false;">Início</a>
-        / Carrinho
-    </p>
-
-    <h2>Meu carrinho</h2>
-    <p class="texto-suave">Confira seus produtos antes de continuar.</p>
-
-    <div class="conteudo-carrinho">
+    <section id="tela-carrinho" class="tela escondida">
+        <h1>Meu carrinho</h1>
         <div id="itens-carrinho"></div>
 
-        <aside class="resumo-compra">
-            <h3>Resumo da compra</h3>
-            <p>Subtotal: <strong id="subtotal-carrinho">R$ 0,00</strong></p>
-            <p>Frete: <strong>A calcular</strong></p>
-            <div class="linha-total">
-                <span>Total parcial</span>
-                <strong id="total-carrinho">R$ 0,00</strong>
+        <div class="resumo">
+            <p>Subtotal: <strong id="subtotal">R$ 0,00</strong></p>
+            <p>Frete: <strong id="frete">R$ 0,00</strong></p>
+
+            <div class="cupom">
+                <input id="codigo-cupom" placeholder="Código do cupom">
+                <button class="botao-secundario" onclick="aplicarCupom()">
+                    Aplicar
+                </button>
             </div>
 
-            <button class="botao-comprar" onclick="irParaCheckout()">
-                Continuar para entrega
-            </button>
+            <p id="mensagem-cupom"></p>
+            <p>Desconto: <strong id="desconto">R$ 0,00</strong></p>
+            <h2>Total: <span id="total-compra">R$ 0,00</span></h2>
 
-            <button class="botao-secundario"
-                    onclick="mostrarTela('categoria')">
+            <button class="botao" onclick="abrirCheckout()">
+                Finalizar compra
+            </button>
+            <button class="botao-secundario" onclick="mostrarTela('produtos')">
                 Continuar comprando
             </button>
-        </aside>
-    </div>
-</section>
+        </div>
+    </section>
 
-<!-- TELA DE CHECKOUT -->
-<section id="tela-checkout" class="tela escondida">
-    <p class="caminho">Início / Carrinho / Finalização</p>
+    <section id="tela-checkout" class="tela escondida">
+        <h1>Finalizar compra</h1>
 
-    <h2>Finalizar compra</h2>
-    <p class="texto-suave">
-        Preencha os dados demonstrativos para continuar.
-    </p>
+        <p class="aviso">
+            Esta é uma loja demonstrativa para um projeto escolar.
+            Não informe dados bancários reais. Nenhum pagamento será realizado.
+        </p>
 
-    <form id="form-checkout" class="form-checkout">
-        <div class="campos-checkout">
-            <label for="nome-entrega">Nome completo</label>
-            <input type="text" id="nome-entrega" required>
+        <form id="form-checkout">
+            <h2>1. Dados para entrega</h2>
 
-            <label for="email-entrega">E-mail</label>
-            <input type="email" id="email-entrega" required>
+            <label for="nome">Nome completo</label>
+            <input id="nome" name="nome" required>
 
-            <label for="cep-entrega">CEP</label>
-            <input type="text" id="cep-entrega"
-                   placeholder="00000-000" maxlength="9" required>
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" required>
 
-            <label for="endereco-entrega">Endereço</label>
-            <input type="text" id="endereco-entrega" required>
+            <label for="endereco">Endereço</label>
+            <input id="endereco" name="endereco" required>
 
-            <label for="numero-entrega">Número</label>
-            <input type="text" id="numero-entrega" required>
+            <label for="cidade">Cidade</label>
+            <input id="cidade" name="cidade" required>
 
-            <label for="cidade-entrega">Cidade</label>
-            <input type="text" id="cidade-entrega" required>
+            <label for="cep">CEP</label>
+            <input id="cep" name="cep" placeholder="00000-000" required>
 
-            <label for="pagamento">Forma de pagamento demonstrativa</label>
-            <select id="pagamento" required>
-                <option value="">Selecione uma opção</option>
-                <option value="Pix demonstrativo">Pix</option>
-                <option value="Cartão demonstrativo">Cartão</option>
-                <option value="Boleto demonstrativo">Boleto</option>
+            <h2>2. Forma de pagamento</h2>
+
+            <label for="pagamento">Selecione uma opção</label>
+            <select id="pagamento" name="pagamento" required>
+                <option value="">Selecione uma forma de pagamento</option>
+                <option value="pix">Pix (simulação)</option>
+                <option value="debito">Cartão de débito (simulação)</option>
+                <option value="credito">Cartão de crédito (simulação)</option>
             </select>
-        </div>
 
-        <div class="resumo-checkout">
-            <h3>Resumo do pedido</h3>
+            <div id="campo-parcelas" class="escondida">
+                <label for="parcelas">Quantidade de parcelas</label>
+                <select id="parcelas" name="parcelas">
+                    <option value="1">1 vez</option>
+                    <option value="2">2 vezes sem juros</option>
+                    <option value="3">3 vezes sem juros</option>
+                    <option value="4">4 vezes sem juros</option>
+                    <option value="5">5 vezes sem juros</option>
+                    <option value="6">6 vezes sem juros</option>
+                </select>
+                <p id="valor-parcela"></p>
+            </div>
+
+            <h2>3. Revisão do pedido</h2>
             <div id="resumo-checkout"></div>
-            <p class="linha-total">
-                Total: <strong id="total-checkout">R$ 0,00</strong>
-            </p>
+
+            <button type="submit" class="botao">
+                Confirmar pedido demonstrativo
+            </button>
+            <button type="button" class="botao-secundario"
+                    onclick="mostrarCarrinho()">
+                Voltar ao carrinho
+            </button>
+        </form>
+    </section>
+
+    <section id="tela-confirmacao" class="tela escondida">
+        <div class="confirmacao">
+            <h1>Pedido demonstrativo confirmado</h1>
+            <p id="mensagem-confirmacao"></p>
+            <p>Nenhum pedido real foi enviado e nenhum pagamento foi processado.</p>
+            <button class="botao" onclick="mostrarTela('inicio')">
+                Voltar à loja
+            </button>
         </div>
+    </section>
 
-        <p class="aviso-demonstrativo">
-            Esta é uma demonstração escolar. Nenhum pagamento será realizado.
-        </p>
+    <section id="tela-ajuda" class="tela escondida">
+        <h1>Ajuda e informações</h1>
 
-        <button type="submit" class="botao-comprar">
-            Confirmar pedido demonstrativo
-        </button>
+        <details>
+            <summary>Como comprar?</summary>
+            <p>Escolha um produto, adicione ao carrinho e siga para o checkout.</p>
+        </details>
 
-        <button type="button" class="botao-secundario"
-                onclick="mostrarCarrinho()">
-            Voltar ao carrinho
-        </button>
-    </form>
-</section>
+        <details>
+            <summary>Os pagamentos são reais?</summary>
+            <p>Não. As formas de pagamento são apenas demonstrativas.</p>
+        </details>
 
-<!-- TELA DE CONFIRMAÇÃO -->
-<section id="tela-confirmacao" class="tela escondida">
-    <div class="confirmacao-pedido">
-        <div class="icone-confirmacao">✓</div>
-        <h1>Pedido confirmado!</h1>
-        <p>Obrigada por escolher a LUNNA.</p>
-        <p id="numero-pedido"></p>
+        <details>
+            <summary>O site possui banco de dados?</summary>
+            <p>Não. Esta versão funciona no navegador e não envia pedidos.</p>
+        </details>
+    </section>
+</main>
 
-        <p class="aviso-demonstrativo">
-            Pedido fictício para demonstração. Não houve cobrança
-            nem envio real de produtos.
-        </p>
-
-        <button class="botao-comprar" onclick="mostrarTela('inicio')">
-            Voltar para a loja
-        </button>
+<footer id="rodape">
+    <div class="rodape-logo">
+        <img src="logo.png" alt="Logo LUNNA" class="logo-imagem">
+        <p>Seu estilo, seu jeito.</p>
+        <p>Moda, acessórios e beleza em um só lugar.</p>
     </div>
-</section>
 
-    </main>
+    <div>
+        <h3>Institucional</h3>
+        <a href="#" onclick="mostrarTela('inicio'); return false;">Sobre a LUNNA</a>
+        <a href="#" onclick="mostrarTela('ajuda'); return false;">Ajuda e perguntas</a>
+    </div>
 
-    <footer id="rodape">
-        <div>
-            <a href="#" class="logo logo-rodape" onclick="mostrarTela('inicio'); return false;">
-                LUNNA ☾
-            </a>
-            <p>Seu estilo, seu jeito.</p>
-        </div>
+    <div>
+        <h3>Atendimento</h3>
+        <a href="#" onclick="mostrarTela('ajuda'); return false;">Dúvidas frequentes</a>
+        <p>Projeto escolar demonstrativo</p>
+    </div>
+</footer>
 
-        <div>
-            <h3>Institucional</h3>
-            <a href="#rodape">Sobre nós</a>
-            <a href="#rodape">Privacidade</a>
-        </div>
-
-        <div>
-            <h3>Ajuda</h3>
-            <a href="#rodape">Trocas e devoluções</a>
-            <a href="#rodape">Acompanhar pedido</a>
-        </div>
-
-        <div>
-            <h3>Newsletter</h3>
-            <p>Receba novidades e ofertas.</p>
-            <input type="email" id="email-newsletter" placeholder="Seu e-mail">
-            <button onclick="inscreverNewsletter()">➜</button>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
