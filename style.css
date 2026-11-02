@@ -89,24 +89,25 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--vinho); font-w
 }
 
 .cabecalho-topo {
-  display: flex;
+  /* 3 colunas: logo à esquerda, busca bem no centro, ícones à direita */
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 520px) 1fr;
   align-items: center;
   gap: 28px;
   padding-top: 14px;
   padding-bottom: 10px;
 }
 
+.logo { justify-self: start; }
 .logo img { height: 50px; width: auto; }
 .btn-menu { display: none; font-size: 1.6rem; color: var(--vinho); }
 
 .busca {
-  flex: 1;
-  max-width: 520px;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   background: var(--rosa-suave);
   border: 1px solid var(--borda);
-  border-radius: 8px;
+  border-radius: 18px;
   padding: 0 6px 0 16px;
 }
 .busca input { flex: 1; border: none; background: none; padding: 11px 0; min-width: 0; color: var(--texto); }
@@ -124,7 +125,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--vinho); font-w
   stroke-linejoin: round;
 }
 
-.icones { display: flex; gap: 4px; }
+.icones { display: flex; gap: 4px; justify-self: end; }
 .icones button {
   position: relative;
   display: flex; flex-direction: column; align-items: center; gap: 2px;
@@ -134,6 +135,17 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--vinho); font-w
 }
 .icones button:hover { background: var(--rosa-suave); }
 .rotulo { font-size: 0.72rem; color: var(--texto-suave); }
+
+/* Bolinha rosa no ícone da conta quando a pessoa está conectada */
+.icones button.logado::after {
+  content: "";
+  position: absolute;
+  top: 6px; right: 12px;
+  width: 9px; height: 9px;
+  background: var(--rosa);
+  border: 2px solid var(--branco);
+  border-radius: 50%;
+}
 
 .contador {
   position: absolute;
@@ -523,6 +535,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--vinho); font-w
    ========================================================= */
 @media (max-width: 960px) {
   .grade-produtos, .grade-produtos.grade-3 { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cabecalho-topo { grid-template-columns: auto 1fr auto; gap: 16px; }
   .layout-carrinho { grid-template-columns: 1fr; }
   .resumo { position: static; }
   .rodape-grade { grid-template-columns: 1fr 1fr; }
@@ -540,13 +553,13 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--vinho); font-w
   .faixa-aviso { font-size: 0.74rem; }
 
   /* Cabeçalho: menu + logo + ícones na primeira linha, busca embaixo */
-  .cabecalho-topo { flex-wrap: wrap; gap: 8px; }
+  .cabecalho-topo { display: flex; flex-wrap: wrap; gap: 8px; }
   .btn-menu { display: block; }
   .logo { margin-right: auto; }
   .logo img { height: 40px; }
   .rotulo { display: none; }
   .icones button { padding: 8px; }
-  .busca { order: 3; flex-basis: 100%; max-width: none; }
+  .busca { order: 3; flex-basis: 100%; }
 
   /* Menu vira lista que abre e fecha */
   .menu { display: none; flex-direction: column; gap: 0; padding: 0 16px 12px; }

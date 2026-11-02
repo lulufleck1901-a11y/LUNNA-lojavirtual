@@ -41,9 +41,9 @@
           <span class="contador" id="contador-carrinho">0</span>
           <span class="rotulo">Carrinho</span>
         </button>
-        <button onclick="mostrarTela('login')" aria-label="Minha conta">
+        <button onclick="clicarConta()" aria-label="Conta">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-          <span class="rotulo">Entrar</span>
+          <span class="rotulo" id="rotulo-conta">Entrar</span>
         </button>
       </div>
     </div>
@@ -370,7 +370,7 @@
   <footer class="rodape">
     <div class="conteudo rodape-grade">
       <div>
-        <img class="rodape-logo" src="logo.png" alt="LUNNA">
+        <img class="rodape-logo" src="imagens/logo.png" alt="LUNNA">
         <p>Seu estilo, do seu jeito. Criando momentos únicos através da moda e da autenticidade.</p>
       </div>
       <div>

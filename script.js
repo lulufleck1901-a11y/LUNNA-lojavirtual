@@ -15,6 +15,10 @@
    1. DADOS
    Para trocar uma foto, mude o caminho em "imagem".
    ========================================================= */
+// Formato das imagens da pasta "imagens". Use ".svg" para as ilustrações
+// ou troque para ".jpg" quando colocar suas fotos reais (mesmos nomes de arquivo).
+const tipoImagem = ".svg";
+
 const produtos = [
   {
     id: 1, nome: "Vestido Midi Lunna", categoria: "roupas", tipo: "Vestidos",
@@ -22,7 +26,7 @@ const produtos = [
     descricao: "Vestido midi de tecido leve, com modelagem confortável e alça fina. Perfeito para diversas ocasiões.",
     caracteristicas: "Tecido leve de viscose, forro interno, fecho de zíper nas costas e comprimento midi.",
     cores: ["Rosa", "Vinho", "Bege"], tamanhos: ["PP", "P", "M", "G", "GG"],
-    imagem: "imagens/vestido-midi.svg"
+    imagem: "imagens/vestido-midi" + tipoImagem
   },
   {
     id: 2, nome: "Blusa Cropped", categoria: "roupas", tipo: "Blusas",
@@ -30,7 +34,7 @@ const produtos = [
     descricao: "Blusa cropped básica de algodão, ideal para combinar com calças e saias.",
     caracteristicas: "100% algodão, gola redonda e manga curta.",
     cores: ["Branco", "Rosa"], tamanhos: ["PP", "P", "M", "G"],
-    imagem: "imagens/blusa-cropped.svg"
+    imagem: "imagens/blusa-cropped" + tipoImagem
   },
   {
     id: 3, nome: "Calça Wide Leg", categoria: "roupas", tipo: "Calças",
@@ -38,7 +42,7 @@ const produtos = [
     descricao: "Calça de pernas largas com cintura alta e caimento fluido.",
     caracteristicas: "Cintura alta, bolsos laterais e tecido de alfaiataria leve.",
     cores: ["Bege", "Preto"], tamanhos: ["P", "M", "G", "GG"],
-    imagem: "imagens/calca-wide-leg.svg"
+    imagem: "imagens/calca-wide-leg" + tipoImagem
   },
   {
     id: 4, nome: "Jaqueta Jeans", categoria: "roupas", tipo: "Jaquetas",
@@ -46,7 +50,7 @@ const produtos = [
     descricao: "Jaqueta jeans clássica, com lavagem clara e bolsos frontais.",
     caracteristicas: "Jeans com elastano, botões metálicos e dois bolsos.",
     cores: ["Azul"], tamanhos: ["P", "M", "G"],
-    imagem: "imagens/jaqueta-jeans.svg"
+    imagem: "imagens/jaqueta-jeans" + tipoImagem
   },
   {
     id: 5, nome: "Saia Plissada", categoria: "roupas", tipo: "Saias",
@@ -54,7 +58,7 @@ const produtos = [
     descricao: "Saia plissada midi com cós elástico e movimento delicado.",
     caracteristicas: "Poliéster plissado, cós elástico e comprimento midi.",
     cores: ["Rosa", "Bege"], tamanhos: ["PP", "P", "M", "G"],
-    imagem: "imagens/saia-plissada.svg"
+    imagem: "imagens/saia-plissada" + tipoImagem
   },
   {
     id: 6, nome: "Macacão Preto", categoria: "roupas", tipo: "Macacões",
@@ -62,7 +66,7 @@ const produtos = [
     descricao: "Macacão pantalona preto, elegante e confortável para o dia a dia.",
     caracteristicas: "Alças ajustáveis, cintura marcada e tecido de crepe.",
     cores: ["Preto"], tamanhos: ["P", "M", "G"],
-    imagem: "imagens/macacao.svg"
+    imagem: "imagens/macacao" + tipoImagem
   },
   {
     id: 7, nome: "Sandália Salto Bloco", categoria: "calcados", tipo: "Sandálias",
@@ -70,7 +74,7 @@ const produtos = [
     descricao: "Sandália com salto bloco baixo, muito confortável para usar o dia todo.",
     caracteristicas: "Salto de 5 cm, tira ajustável no tornozelo e solado antiderrapante.",
     cores: ["Rosa", "Bege"], tamanhos: ["36", "37", "38", "39"],
-    imagem: "imagens/sandalia.svg"
+    imagem: "imagens/sandalia" + tipoImagem
   },
   {
     id: 8, nome: "Tênis Casual Branco", categoria: "calcados", tipo: "Tênis",
@@ -78,7 +82,7 @@ const produtos = [
     descricao: "Tênis branco casual, combina com qualquer look.",
     caracteristicas: "Cabedal sintético, palmilha macia e solado de borracha.",
     cores: ["Branco"], tamanhos: ["36", "37", "38", "39"],
-    imagem: "imagens/tenis.svg"
+    imagem: "imagens/tenis" + tipoImagem
   },
   {
     id: 9, nome: "Bolsa Tracada", categoria: "acessorios", tipo: "Bolsas",
@@ -86,7 +90,7 @@ const produtos = [
     descricao: "Bolsa estruturada com alça de mão e alça transversal removível.",
     caracteristicas: "Material sintético, fecho com zíper, 24 cm de largura.",
     cores: ["Vinho", "Rosa"], tamanhos: ["Único"],
-    imagem: "imagens/bolsa-tracada.svg"
+    imagem: "imagens/bolsa-tracada" + tipoImagem
   },
   {
     id: 10, nome: "Brinco Lua", categoria: "acessorios", tipo: "Joias",
@@ -94,7 +98,7 @@ const produtos = [
     descricao: "Brinco delicado em formato de lua, inspirado na identidade da LUNNA.",
     caracteristicas: "Banhado a ouro, hipoalergênico e fecho tipo tarraxa.",
     cores: ["Rosa"], tamanhos: ["Único"],
-    imagem: "imagens/brinco-lua.svg"
+    imagem: "imagens/brinco-lua" + tipoImagem
   },
   {
     id: 11, nome: "Gloss Labial", categoria: "beleza", tipo: "Maquiagem",
@@ -102,7 +106,7 @@ const produtos = [
     descricao: "Gloss com brilho intenso e toque hidratante, não é pegajoso.",
     caracteristicas: "Contém 6 ml, fórmula vegana e fragrância suave.",
     cores: ["Rosa"], tamanhos: ["Único"],
-    imagem: "imagens/gloss-labial.svg"
+    imagem: "imagens/gloss-labial" + tipoImagem
   },
   {
     id: 12, nome: "Hidratante Facial", categoria: "beleza", tipo: "Skincare",
@@ -110,7 +114,7 @@ const produtos = [
     descricao: "Hidratante facial leve, de absorção rápida, para o uso diário.",
     caracteristicas: "Contém 50 g, com ácido hialurônico e fator de proteção 15.",
     cores: ["Branco"], tamanhos: ["Único"],
-    imagem: "imagens/hidratante.svg"
+    imagem: "imagens/hidratante" + tipoImagem
   }
 ];
 
@@ -157,6 +161,7 @@ function limparFavoritos(lista) {
   return lista.map(Number).filter(function (id) { return buscarProduto(id); });
 }
 let cupomAtivo = "";
+let logado = localStorage.getItem("lunnaLogado") === "sim"; // guarda só se está conectada (nenhum dado pessoal)
 
 let categoriaAtual = "";
 let textoBusca = "";
@@ -668,8 +673,35 @@ function mostrarAviso(mensagem, tipo) {
   setTimeout(function () { aviso.remove(); }, 3000);
 }
 
+// Troca o texto do ícone de conta: "Entrar" ou "Sair"
+function atualizarConta() {
+  document.getElementById("rotulo-conta").textContent = logado ? "Sair" : "Entrar";
+  // Bolinha rosa no ícone (aparece também no celular, onde o texto some)
+  document.getElementById("rotulo-conta").parentElement.classList.toggle("logado", logado);
+}
+
+// Clique no ícone de conta: se estiver conectada, sai; senão, abre o login
+function clicarConta() {
+  if (logado) {
+    logado = false;
+    localStorage.removeItem("lunnaLogado");
+    atualizarConta();
+    mostrarAviso("Você saiu da conta.");
+    mostrarTela("inicio");
+  } else {
+    mostrarTela("login");
+  }
+}
+
+function conectar() {
+  logado = true;
+  localStorage.setItem("lunnaLogado", "sim");
+  atualizarConta();
+}
+
 function entrar(evento) {
   evento.preventDefault();
+  conectar();
   mostrarAviso("Login demonstrativo realizado com sucesso!");
   evento.target.reset();
   mostrarTela("inicio");
@@ -683,9 +715,10 @@ function cadastrar(evento) {
     mostrarAviso("As senhas não são iguais.", "erro");
     return;
   }
-  mostrarAviso("Cadastro demonstrativo concluído!");
+  conectar();
+  mostrarAviso("Cadastro demonstrativo concluído! Você já está conectada.");
   evento.target.reset();
-  mostrarTela("login");
+  mostrarTela("inicio");
 }
 
 function enviarContato(evento) {
@@ -705,5 +738,6 @@ function assinarNewsletter(evento) {
    INÍCIO DO SITE
    ========================================================= */
 atualizarContadores();
+atualizarConta();
 montarInicio();
 atualizarCoracoes();
