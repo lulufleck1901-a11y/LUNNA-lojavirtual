@@ -1,69 +1,124 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="LUNNA — moda, acessórios e beleza.">
+
     <title>LUNNA | Seu estilo, do seu jeito</title>
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
 
+    <!-- NOTIFICAÇÕES -->
+    <div
+        id="toastContainer"
+        class="toast-container"
+        aria-live="polite"
+        aria-atomic="false">
+    </div>
+
     <!-- CABEÇALHO -->
     <header class="site-header">
 
         <div class="header-main">
 
-            <a class="brand" href="#" onclick="mostrarTela('inicio'); return false;">
+            <!-- LOGO -->
+            <a
+                class="brand"
+                href="#"
+                onclick="mostrarTela('inicio'); return false;">
+
                 <img src="logo.png" alt="Logo LUNNA">
+
             </a>
 
+            <!-- PESQUISA -->
             <form class="search-form" id="formPesquisa">
+
                 <input
                     id="campoPesquisa"
                     type="search"
                     placeholder="Buscar produtos..."
-                    aria-label="Buscar produtos"
-                >
-                <button type="submit" aria-label="Pesquisar">⌕</button>
+                    aria-label="Buscar produtos">
+
+                <button type="submit" aria-label="Pesquisar">
+                    &#128269;
+                </button>
+
             </form>
 
+            <!-- AÇÕES DO CABEÇALHO -->
             <div class="header-actions">
 
-                <button class="icon-button"
+                <button
+                    class="icon-button"
                     onclick="mostrarTela('favoritos')"
-                    aria-label="Favoritos">
-                    ♡
+                    aria-label="Meus favoritos"
+                    title="Favoritos">
+
+                    &#9825;
+
                 </button>
 
-                <button class="icon-button cart-header"
+                <button
+                    class="icon-button cart-header"
                     onclick="mostrarTela('carrinho')"
-                    aria-label="Carrinho">
-                    ♧
+                    aria-label="Meu carrinho"
+                    title="Carrinho">
+
+                    &#128722;
+
                     <span id="contadorCarrinho">0</span>
+
                 </button>
 
-                <button class="icon-button"
+                <button
+                    class="icon-button"
                     onclick="mostrarTela('login')"
-                    aria-label="Minha conta">
-                    ♙
+                    aria-label="Minha conta"
+                    title="Minha conta">
+
+                    &#128100;
+
                 </button>
 
             </div>
 
         </div>
 
-        <!-- MENU -->
+        <!-- MENU DE NAVEGAÇÃO -->
         <nav class="main-nav">
 
-            <button onclick="mostrarTela('inicio')">Início</button>
-            <button onclick="filtrarCategoria('Todos')">Categorias</button>
-            <button onclick="mostrarTela('ofertas')">Ofertas</button>
-            <button onclick="mostrarTela('cupons')">Cupons</button>
-            <button onclick="mostrarTela('informacoes')">Informações</button>
-            <button onclick="mostrarTela('contato')">Contato</button>
+            <button onclick="mostrarTela('inicio')">
+                Início
+            </button>
+
+            <button onclick="filtrarCategoria('Todos')">
+                Categorias
+            </button>
+
+            <button onclick="mostrarTela('ofertas')">
+                Ofertas
+            </button>
+
+            <button onclick="mostrarTela('cupons')">
+                Cupons
+            </button>
+
+            <button onclick="mostrarTela('informacoes')">
+                Informações
+            </button>
+
+            <button onclick="mostrarTela('contato')">
+                Contato
+            </button>
 
         </nav>
 
@@ -72,7 +127,10 @@
 
     <main>
 
+        <!-- ================================= -->
         <!-- PÁGINA INICIAL -->
+        <!-- ================================= -->
+
         <section id="inicio" class="tela ativa">
 
             <!-- BANNER PRINCIPAL -->
@@ -80,7 +138,9 @@
 
                 <div class="hero-copy">
 
-                    <span class="eyebrow">Novo conceito</span>
+                    <span class="eyebrow">
+                        Novo conceito
+                    </span>
 
                     <h1>
                         Seu estilo,<br>
@@ -92,9 +152,12 @@
                         para todos os seus momentos.
                     </p>
 
-                    <button class="primary-button"
+                    <button
+                        class="primary-button"
                         onclick="irParaProdutos()">
+
                         Conhecer agora
+
                     </button>
 
                 </div>
@@ -110,45 +173,66 @@
                 <div class="section-heading">
 
                     <div>
+
                         <span class="eyebrow">
                             Encontre o que combina com você
                         </span>
 
                         <h2>Compre por categoria</h2>
+
                     </div>
 
                 </div>
 
                 <div class="category-list">
 
-                    <button class="category-button"
+                    <button
+                        class="category-button"
                         onclick="filtrarCategoria('Roupas')">
 
-                        <span class="category-icon">♧</span>
+                        <span class="category-icon">
+                            &#128087;
+                        </span>
+
                         <span>Roupas</span>
 
                     </button>
 
-                    <button class="category-button"
+
+                    <button
+                        class="category-button"
                         onclick="filtrarCategoria('Calçados')">
 
-                        <span class="category-icon">⌁</span>
+                        <span class="category-icon">
+                            &#128096;
+                        </span>
+
                         <span>Calçados</span>
 
                     </button>
 
-                    <button class="category-button"
+
+                    <button
+                        class="category-button"
                         onclick="filtrarCategoria('Acessórios')">
 
-                        <span class="category-icon">♡</span>
+                        <span class="category-icon">
+                            &#128141;
+                        </span>
+
                         <span>Acessórios</span>
 
                     </button>
 
-                    <button class="category-button"
+
+                    <button
+                        class="category-button"
                         onclick="filtrarCategoria('Beleza')">
 
-                        <span class="category-icon">✧</span>
+                        <span class="category-icon">
+                            &#10024;
+                        </span>
+
                         <span>Beleza</span>
 
                     </button>
@@ -159,23 +243,36 @@
 
 
             <!-- PRODUTOS -->
-            <section class="content-section" id="areaProdutos">
+            <section
+                class="content-section"
+                id="areaProdutos">
 
                 <div class="section-heading">
 
                     <div>
-                        <span class="eyebrow">Escolhas especiais</span>
+
+                        <span class="eyebrow">
+                            Escolhas especiais
+                        </span>
+
                         <h2>Novidades da LUNNA</h2>
+
                     </div>
 
-                    <button class="text-button"
+                    <button
+                        class="text-button"
                         onclick="mostrarTela('todosProdutos')">
+
                         Ver todos →
+
                     </button>
 
                 </div>
 
-                <div id="gradeInicio" class="product-grid"></div>
+                <div
+                    id="gradeInicio"
+                    class="product-grid">
+                </div>
 
             </section>
 
@@ -185,20 +282,30 @@
 
                 <div>
 
-                    <span class="eyebrow">Beauty picks</span>
+                    <span class="eyebrow">
+                        Beauty picks
+                    </span>
 
-                    <h2>Cuide de você, todos os dias.</h2>
+                    <h2>
+                        Cuide de você, todos os dias.
+                    </h2>
 
-                    <p>Descubra seus novos favoritos.</p>
+                    <p>
+                        Descubra seus novos favoritos.
+                    </p>
 
-                    <button class="text-button"
+                    <button
+                        class="text-button"
                         onclick="filtrarCategoria('Beleza')">
+
                         Explorar beleza →
+
                     </button>
 
                 </div>
 
                 <div class="beauty-image beauty-one"></div>
+
                 <div class="beauty-image beauty-two"></div>
 
             </section>
@@ -206,8 +313,13 @@
         </section>
 
 
-        <!-- TODOS OS PRODUTOS / PESQUISA -->
-        <section id="todosProdutos" class="tela content-section">
+        <!-- ================================= -->
+        <!-- TODOS OS PRODUTOS -->
+        <!-- ================================= -->
+
+        <section
+            id="todosProdutos"
+            class="tela content-section">
 
             <div class="breadcrumb">
                 Início › Produtos
@@ -217,13 +329,18 @@
 
                 <div>
 
-                    <span class="eyebrow">Explore a LUNNA</span>
+                    <span class="eyebrow">
+                        Explore a LUNNA
+                    </span>
 
                     <h1 id="tituloResultados">
                         Todos os produtos
                     </h1>
 
-                    <p id="quantidadeResultados" class="muted"></p>
+                    <p
+                        id="quantidadeResultados"
+                        class="muted">
+                    </p>
 
                 </div>
 
@@ -232,10 +349,23 @@
                     Ordenar por:
 
                     <select id="ordenacao">
-                        <option value="popular">Mais populares</option>
-                        <option value="menor">Menor preço</option>
-                        <option value="maior">Maior preço</option>
-                        <option value="recentes">Mais recentes</option>
+
+                        <option value="popular">
+                            Mais populares
+                        </option>
+
+                        <option value="menor">
+                            Menor preço
+                        </option>
+
+                        <option value="maior">
+                            Maior preço
+                        </option>
+
+                        <option value="recentes">
+                            Mais recentes
+                        </option>
+
                     </select>
 
                 </label>
@@ -251,19 +381,27 @@
                     <h3>Filtrar por</h3>
 
                     <label>
+
                         Categoria
 
                         <select id="filtroCategoria">
-                            <option value="Todos">Todas</option>
+
+                            <option value="Todos">
+                                Todas
+                            </option>
+
                             <option>Roupas</option>
                             <option>Calçados</option>
                             <option>Acessórios</option>
                             <option>Beleza</option>
+
                         </select>
+
                     </label>
 
 
                     <label>
+
                         Preço máximo
 
                         <input
@@ -271,30 +409,41 @@
                             type="range"
                             min="30"
                             max="300"
-                            value="300"
-                        >
+                            value="300">
 
-                        <span id="valorPreco">Até R$ 300,00</span>
+                        <span id="valorPreco">
+                            Até R$ 300,00
+                        </span>
 
                     </label>
 
 
                     <label>
+
                         Cor
 
                         <select id="filtroCor">
-                            <option value="Todas">Todas</option>
+
+                            <option value="Todas">
+                                Todas
+                            </option>
+
                             <option>Rosa</option>
-                            <option>Preto</option>
                             <option>Branco</option>
                             <option>Bege</option>
+                            <option>Azul</option>
+
                         </select>
 
                     </label>
 
-                    <button class="outline-button full-button"
+
+                    <button
+                        class="outline-button full-button"
                         id="limparFiltros">
+
                         Limpar filtros
+
                     </button>
 
                 </aside>
@@ -303,11 +452,18 @@
                 <!-- RESULTADOS -->
                 <div class="catalog-results">
 
-                    <div id="gradeCatalogo" class="product-grid"></div>
+                    <div
+                        id="gradeCatalogo"
+                        class="product-grid">
+                    </div>
 
-                    <p id="semResultados" class="empty-message hidden">
+                    <p
+                        id="semResultados"
+                        class="empty-message hidden">
+
                         Nenhum produto encontrado.
                         Tente alterar os filtros.
+
                     </p>
 
                 </div>
@@ -317,12 +473,22 @@
         </section>
 
 
+        <!-- ================================= -->
         <!-- DETALHES DO PRODUTO -->
-        <section id="produto" class="tela content-section">
+        <!-- ================================= -->
+
+        <section
+            id="produto"
+            class="tela content-section">
 
             <div class="breadcrumb">
-                <button onclick="mostrarTela('inicio')">Início</button>
+
+                <button onclick="mostrarTela('inicio')">
+                    Início
+                </button>
+
                 › Produto
+
             </div>
 
             <div id="detalheProduto"></div>
@@ -330,35 +496,62 @@
         </section>
 
 
+        <!-- ================================= -->
         <!-- FAVORITOS -->
-        <section id="favoritos" class="tela content-section">
+        <!-- ================================= -->
+
+        <section
+            id="favoritos"
+            class="tela content-section">
 
             <div class="section-heading">
 
                 <div>
-                    <span class="eyebrow">Sua seleção</span>
+
+                    <span class="eyebrow">
+                        Sua seleção
+                    </span>
+
                     <h1>Meus favoritos</h1>
+
                 </div>
 
             </div>
 
-            <div id="gradeFavoritos" class="product-grid"></div>
+            <div
+                id="gradeFavoritos"
+                class="product-grid">
+            </div>
 
-            <p id="favoritosVazios" class="empty-message hidden">
+            <p
+                id="favoritosVazios"
+                class="empty-message hidden">
+
                 Você ainda não adicionou favoritos.
+
             </p>
 
         </section>
 
 
+        <!-- ================================= -->
         <!-- CARRINHO -->
-        <section id="carrinho" class="tela content-section">
+        <!-- ================================= -->
+
+        <section
+            id="carrinho"
+            class="tela content-section">
 
             <div class="section-heading">
 
                 <div>
-                    <span class="eyebrow">Quase seu</span>
+
+                    <span class="eyebrow">
+                        Quase seu
+                    </span>
+
                     <h1>Meu carrinho</h1>
+
                 </div>
 
             </div>
@@ -368,70 +561,123 @@
         </section>
 
 
+        <!-- ================================= -->
         <!-- FINALIZAÇÃO DA COMPRA -->
-        <section id="checkout"
+        <!-- ================================= -->
+
+        <section
+            id="checkout"
             class="tela content-section narrow-section">
 
             <div class="section-heading">
 
                 <div>
-                    <span class="eyebrow">Só mais um passo</span>
+
+                    <span class="eyebrow">
+                        Só mais um passo
+                    </span>
+
                     <h1>Finalizar compra</h1>
+
                 </div>
 
             </div>
 
 
-            <form id="formCheckout" class="form-card">
+            <form
+                id="formCheckout"
+                class="form-card">
 
                 <h2>Dados para entrega</h2>
 
                 <div class="form-grid">
 
                     <label class="wide">
+
                         Nome completo
+
                         <input name="nome" required>
+
                     </label>
 
+
                     <label>
+
                         E-mail
-                        <input name="email" type="email" required>
+
+                        <input
+                            name="email"
+                            type="email"
+                            required>
+
                     </label>
 
+
                     <label>
+
                         CEP
-                        <input name="cep" required placeholder="00000-000">
+
+                        <input
+                            name="cep"
+                            required
+                            placeholder="00000-000">
+
                     </label>
+
 
                     <label class="wide">
+
                         Endereço
+
                         <input name="endereco" required>
+
                     </label>
 
+
                     <label>
+
                         Número
+
                         <input name="numero" required>
+
                     </label>
 
+
                     <label>
+
                         Complemento
+
                         <input name="complemento">
+
                     </label>
 
+
                     <label>
+
                         Cidade
+
                         <input name="cidade" required>
+
                     </label>
 
+
                     <label>
+
                         Estado
-                        <input name="estado" required maxlength="2">
+
+                        <input
+                            name="estado"
+                            required
+                            maxlength="2">
+
                     </label>
 
                 </div>
 
 
-                <h2>Forma de pagamento demonstrativa</h2>
+                <h2>
+                    Forma de pagamento demonstrativa
+                </h2>
 
                 <p class="muted small">
                     Nenhum pagamento real será realizado.
@@ -440,29 +686,56 @@
                 <div class="payment-options">
 
                     <label>
-                        <input type="radio" name="pagamento"
-                            value="PIX" checked>
+
+                        <input
+                            type="radio"
+                            name="pagamento"
+                            value="PIX"
+                            checked>
+
                         PIX
+
                     </label>
 
+
                     <label>
-                        <input type="radio" name="pagamento"
+
+                        <input
+                            type="radio"
+                            name="pagamento"
                             value="Cartão de crédito">
+
                         Cartão de crédito
+
                     </label>
 
+
                     <label>
-                        <input type="radio" name="pagamento"
+
+                        <input
+                            type="radio"
+                            name="pagamento"
                             value="Boleto">
+
                         Boleto
+
                     </label>
 
                 </div>
 
-                <div id="resumoCheckout" class="checkout-summary"></div>
 
-                <button class="primary-button full-button" type="submit">
+                <div
+                    id="resumoCheckout"
+                    class="checkout-summary">
+                </div>
+
+
+                <button
+                    class="primary-button full-button"
+                    type="submit">
+
                     Finalizar pedido
+
                 </button>
 
             </form>
@@ -470,17 +743,27 @@
         </section>
 
 
+        <!-- ================================= -->
         <!-- CONFIRMAÇÃO -->
-        <section id="confirmacao"
+        <!-- ================================= -->
+
+        <section
+            id="confirmacao"
             class="tela content-section narrow-section">
 
             <div class="success-card">
 
-                <div class="success-symbol">✓</div>
+                <div class="success-symbol">
+                    ✓
+                </div>
 
-                <span class="eyebrow">Pedido registrado</span>
+                <span class="eyebrow">
+                    Pedido registrado
+                </span>
 
-                <h1>Obrigada por escolher a LUNNA!</h1>
+                <h1>
+                    Obrigada por escolher a LUNNA!
+                </h1>
 
                 <p id="mensagemPedido">
                     Seu pedido demonstrativo foi concluído.
@@ -491,9 +774,12 @@
                     Nenhuma compra ou cobrança real foi realizada.
                 </p>
 
-                <button class="primary-button"
+                <button
+                    class="primary-button"
                     onclick="mostrarTela('inicio')">
+
                     Voltar para a loja
+
                 </button>
 
             </div>
@@ -501,43 +787,77 @@
         </section>
 
 
+        <!-- ================================= -->
         <!-- LOGIN -->
-        <section id="login"
+        <!-- ================================= -->
+
+        <section
+            id="login"
             class="tela content-section narrow-section">
 
             <div class="form-card">
 
-                <span class="eyebrow">Bem-vinda de volta</span>
+                <span class="eyebrow">
+                    Bem-vinda de volta
+                </span>
 
                 <h1>Entrar na LUNNA</h1>
 
                 <form id="formLogin">
 
                     <label>
+
                         E-mail
-                        <input type="email" name="email" required>
+
+                        <input
+                            type="email"
+                            name="email"
+                            required>
+
                     </label>
+
 
                     <label>
+
                         Senha
-                        <input type="password" name="senha"
-                            required minlength="4">
+
+                        <input
+                            type="password"
+                            name="senha"
+                            required
+                            minlength="4">
+
                     </label>
 
-                    <button class="primary-button full-button" type="submit">
+
+                    <button
+                        class="primary-button full-button"
+                        type="submit">
+
                         Entrar
+
                     </button>
 
-                    <p class="form-feedback" id="feedbackLogin"></p>
+                    <p
+                        class="form-feedback"
+                        id="feedbackLogin">
+                    </p>
 
                 </form>
 
+
                 <p class="muted">
+
                     Ainda não tem conta?
-                    <button class="inline-link"
+
+                    <button
+                        class="inline-link"
                         onclick="mostrarTela('cadastro')">
+
                         Criar cadastro
+
                     </button>
+
                 </p>
 
                 <p class="small muted">
@@ -549,54 +869,99 @@
         </section>
 
 
+        <!-- ================================= -->
         <!-- CADASTRO -->
-        <section id="cadastro"
+        <!-- ================================= -->
+
+        <section
+            id="cadastro"
             class="tela content-section narrow-section">
 
             <div class="form-card">
 
-                <span class="eyebrow">Faça parte</span>
+                <span class="eyebrow">
+                    Faça parte
+                </span>
 
                 <h1>Criar conta</h1>
 
                 <form id="formCadastro">
 
                     <label>
+
                         Nome completo
+
                         <input name="nome" required>
+
                     </label>
 
+
                     <label>
+
                         E-mail
-                        <input type="email" name="email" required>
+
+                        <input
+                            type="email"
+                            name="email"
+                            required>
+
                     </label>
 
+
                     <label>
+
                         Senha
-                        <input type="password" name="senha"
-                            required minlength="4">
+
+                        <input
+                            type="password"
+                            name="senha"
+                            required
+                            minlength="4">
+
                     </label>
+
 
                     <label>
+
                         Confirmar senha
-                        <input type="password" name="confirmar"
-                            required minlength="4">
+
+                        <input
+                            type="password"
+                            name="confirmar"
+                            required
+                            minlength="4">
+
                     </label>
 
-                    <button class="primary-button full-button" type="submit">
+
+                    <button
+                        class="primary-button full-button"
+                        type="submit">
+
                         Criar conta
+
                     </button>
 
-                    <p class="form-feedback" id="feedbackCadastro"></p>
+                    <p
+                        class="form-feedback"
+                        id="feedbackCadastro">
+                    </p>
 
                 </form>
 
+
                 <p class="muted">
+
                     Já possui cadastro?
-                    <button class="inline-link"
+
+                    <button
+                        class="inline-link"
                         onclick="mostrarTela('login')">
+
                         Entrar
+
                     </button>
+
                 </p>
 
                 <p class="small muted">
@@ -609,10 +974,17 @@
         </section>
 
 
+        <!-- ================================= -->
         <!-- OFERTAS -->
-        <section id="ofertas" class="tela content-section info-page">
+        <!-- ================================= -->
 
-            <span class="eyebrow">Seleção especial</span>
+        <section
+            id="ofertas"
+            class="tela content-section info-page">
+
+            <span class="eyebrow">
+                Seleção especial
+            </span>
 
             <h1>Ofertas LUNNA</h1>
 
@@ -621,18 +993,28 @@
                 para renovar seus favoritos.
             </p>
 
-            <button class="primary-button"
+            <button
+                class="primary-button"
                 onclick="mostrarTela('todosProdutos')">
+
                 Ver produtos
+
             </button>
 
         </section>
 
 
+        <!-- ================================= -->
         <!-- CUPONS -->
-        <section id="cupons" class="tela content-section info-page">
+        <!-- ================================= -->
 
-            <span class="eyebrow">Vantagens especiais</span>
+        <section
+            id="cupons"
+            class="tela content-section info-page">
+
+            <span class="eyebrow">
+                Vantagens especiais
+            </span>
 
             <h1>Cupons</h1>
 
@@ -645,11 +1027,17 @@
         </section>
 
 
+        <!-- ================================= -->
         <!-- INFORMAÇÕES -->
-        <section id="informacoes"
+        <!-- ================================= -->
+
+        <section
+            id="informacoes"
             class="tela content-section info-page">
 
-            <span class="eyebrow">Conheça a marca</span>
+            <span class="eyebrow">
+                Conheça a marca
+            </span>
 
             <h1>Sobre a LUNNA</h1>
 
@@ -663,11 +1051,17 @@
         </section>
 
 
+        <!-- ================================= -->
         <!-- CONTATO -->
-        <section id="contato"
+        <!-- ================================= -->
+
+        <section
+            id="contato"
             class="tela content-section info-page">
 
-            <span class="eyebrow">Estamos aqui</span>
+            <span class="eyebrow">
+                Estamos aqui
+            </span>
 
             <h1>Contato</h1>
 
@@ -676,28 +1070,54 @@
                 demonstrativo da loja.
             </p>
 
-            <form id="formContato" class="form-card">
+            <form
+                id="formContato"
+                class="form-card">
 
                 <label>
+
                     Seu nome
+
                     <input required>
+
                 </label>
 
+
                 <label>
+
                     Seu e-mail
-                    <input type="email" required>
+
+                    <input
+                        type="email"
+                        required>
+
                 </label>
+
 
                 <label>
+
                     Mensagem
-                    <textarea rows="4" required></textarea>
+
+                    <textarea
+                        rows="4"
+                        required>
+                    </textarea>
+
                 </label>
 
-                <button class="primary-button" type="submit">
+
+                <button
+                    class="primary-button"
+                    type="submit">
+
                     Enviar mensagem
+
                 </button>
 
-                <p id="feedbackContato" class="form-feedback"></p>
+                <p
+                    id="feedbackContato"
+                    class="form-feedback">
+                </p>
 
             </form>
 
@@ -706,14 +1126,20 @@
     </main>
 
 
+    <!-- ================================= -->
     <!-- RODAPÉ -->
+    <!-- ================================= -->
+
     <footer class="site-footer">
 
         <div class="footer-columns">
 
+            <!-- MARCA -->
             <div class="footer-brand">
 
-                <img src="imagens/logo.png" alt="LUNNA">
+                <img
+                    src="logo.png"
+                    alt="LUNNA">
 
                 <p>
                     Seu estilo, do seu jeito.
@@ -721,70 +1147,123 @@
                 </p>
 
                 <div class="social-links">
-                    <a href="#" aria-label="Instagram">◎</a>
-                    <a href="#" aria-label="Pinterest">P</a>
-                    <a href="#" aria-label="TikTok">♪</a>
+
+                    <a href="#" aria-label="Instagram">
+                        ◎
+                    </a>
+
+                    <a href="#" aria-label="Pinterest">
+                        P
+                    </a>
+
+                    <a href="#" aria-label="TikTok">
+                        ♪
+                    </a>
+
                 </div>
 
             </div>
 
 
+            <!-- INSTITUCIONAL -->
             <div>
 
                 <h3>Institucional</h3>
 
-                <button onclick="mostrarTela('informacoes')">Sobre nós</button>
-                <button onclick="mostrarTela('informacoes')">Nossa loja</button>
-                <button onclick="mostrarTela('contato')">Trabalhe conosco</button>
-                <button onclick="mostrarTela('informacoes')">Blog LUNNA</button>
+                <button onclick="mostrarTela('informacoes')">
+                    Sobre nós
+                </button>
+
+                <button onclick="mostrarTela('informacoes')">
+                    Nossa loja
+                </button>
+
+                <button onclick="mostrarTela('contato')">
+                    Trabalhe conosco
+                </button>
+
+                <button onclick="mostrarTela('informacoes')">
+                    Blog LUNNA
+                </button>
 
             </div>
 
 
+            <!-- AJUDA -->
             <div>
 
                 <h3>Ajuda</h3>
 
-                <button onclick="mostrarTela('informacoes')">Trocas e devoluções</button>
-                <button onclick="mostrarTela('informacoes')">Termos de uso</button>
-                <button onclick="mostrarTela('informacoes')">Privacidade</button>
-                <button onclick="mostrarTela('carrinho')">Acompanhar pedido</button>
+                <button onclick="mostrarTela('informacoes')">
+                    Trocas e devoluções
+                </button>
+
+                <button onclick="mostrarTela('informacoes')">
+                    Termos de uso
+                </button>
+
+                <button onclick="mostrarTela('informacoes')">
+                    Privacidade
+                </button>
+
+                <button onclick="mostrarTela('carrinho')">
+                    Acompanhar pedido
+                </button>
 
             </div>
 
 
+            <!-- NEWSLETTER -->
             <div class="newsletter">
 
                 <h3>Newsletter</h3>
 
-                <p>Receba novidades e nossas melhores ofertas.</p>
+                <p>
+                    Receba novidades e nossas melhores ofertas.
+                </p>
 
                 <form id="formNewsletter">
 
-                    <input type="email"
+                    <input
+                        type="email"
                         placeholder="Seu e-mail"
                         required>
 
-                    <button aria-label="Inscrever">➜</button>
+                    <button
+                        type="submit"
+                        aria-label="Inscrever">
+
+                        ➜
+
+                    </button>
 
                 </form>
 
-                <p id="feedbackNewsletter" class="form-feedback"></p>
+                <p
+                    id="feedbackNewsletter"
+                    class="form-feedback">
+                </p>
 
             </div>
 
         </div>
 
 
+        <!-- FINAL DO RODAPÉ -->
         <div class="footer-bottom">
 
-            <span>© 2026 LUNNA. Loja fictícia para fins educacionais.</span>
+            <span>
+                © 2026 LUNNA. Loja fictícia para fins educacionais.
+            </span>
 
-            <span>Privacidade | Termos | Ajuda</span>
+            <span>
+                Privacidade | Termos | Ajuda
+            </span>
 
         </div>
 
     </footer>
 
 </body>
+
 </html>
