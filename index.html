@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUNNA – Moda, calçados, acessórios e beleza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= CABEÇALHO ================= -->
+  <header class="cabecalho">
+    <div class="conteudo cabecalho-topo">
+      <button class="btn-menu" onclick="alternarMenu()" aria-label="Abrir menu">☰</button>
+
+      <button class="logo" onclick="mostrarTela('inicio')" aria-label="Ir para a página inicial">
+        <img src="logo.png" alt="LUNNA">
+      </button>
+
+      <form class="busca" onsubmit="pesquisar(event)">
+        <input type="text" id="campo-busca" placeholder="Buscar produtos" aria-label="Buscar produtos">
+        <button type="submit" aria-label="Pesquisar">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        </button>
+      </form>
+
+      <div class="icones">
+        <button onclick="mostrarTela('favoritos')" aria-label="Favoritos">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-8-5.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 11-8 11z"/></svg>
+          <span class="contador" id="contador-favoritos">0</span>
+        </button>
+        <button onclick="mostrarTela('carrinho')" aria-label="Carrinho">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l3 12h11l2-8H6"/></svg>
+          <span class="contador" id="contador-carrinho">0</span>
+        </button>
+        <button onclick="mostrarTela('login')" aria-label="Minha conta">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav class="menu" id="menu">
+      <div class="item-menu">
+        <button onclick="alternarSubmenu()">Categorias ▾</button>
+        <div class="submenu" id="submenu">
+          <button onclick="verCategoria('roupas')">Roupas</button>
+          <button onclick="verCategoria('calcados')">Calçados</button>
+          <button onclick="verCategoria('acessorios')">Acessórios</button>
+          <button onclick="verCategoria('beleza')">Beleza</button>
+          <button onclick="verCategoria('')">Ver tudo</button>
+        </div>
+      </div>
+      <button onclick="verOfertas()">Ofertas</button>
+      <button onclick="mostrarTela('cupons')">Cupons</button>
+      <button onclick="mostrarTela('informacoes')">Informações</button>
+      <button onclick="mostrarTela('contato')">Contato</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ================= INÍCIO ================= -->
+    <section class="tela ativa" id="tela-inicio">
+      <div class="banner">
+        <div class="banner-texto">
+          <p>Nova coleção</p>
+          <h1>Seu estilo,<br>do seu jeito.</h1>
+          <p>Roupas, acessórios e beleza para todos os seus momentos.</p>
+          <button class="btn-principal" onclick="verCategoria('')">Compre agora</button>
+        </div>
+        <div class="banner-imagem">
+          <img src="imagens/banner.jpg" alt="Modelo vestindo a nova coleção" onerror="this.style.visibility='hidden'">
+        </div>
+      </div>
+
+      <div class="conteudo">
+        <h2 class="titulo-secao">Compre por categoria</h2>
+        <div class="categorias">
+          <button onclick="verCategoria('roupas')"><span>👗</span>Roupas</button>
+          <button onclick="verCategoria('calcados')"><span>👠</span>Calçados</button>
+          <button onclick="verCategoria('acessorios')"><span>👜</span>Acessórios</button>
+          <button onclick="verCategoria('beleza')"><span>💄</span>Beleza</button>
+        </div>
+
+        <div class="titulo-linha">
+          <h2 class="titulo-secao">Novidades da LUNNA</h2>
+          <button class="link" onclick="verCategoria('')">Ver todos</button>
+        </div>
+        <div class="grade-produtos" id="lista-novidades"></div>
+
+        <div class="faixa-beleza">
+          <div>
+            <h2>Beauty Picks</h2>
+            <p>Cuidado de você, todos os dias.</p>
+            <button class="link" onclick="verCategoria('beleza')">Descubra seus favoritos</button>
+          </div>
+          <div class="faixa-imagem"><img src="imagens/gloss-labial.jpg" alt="Gloss labial" onerror="this.style.visibility='hidden'"></div>
+          <div class="faixa-imagem"><img src="imagens/hidratante.jpg" alt="Hidratante facial" onerror="this.style.visibility='hidden'"></div>
+        </div>
+
+        <div class="titulo-linha">
+          <h2 class="titulo-secao">Ofertas</h2>
+          <button class="link" onclick="verOfertas()">Ver todas</button>
+        </div>
+        <div class="grade-produtos" id="lista-ofertas"></div>
+      </div>
+    </section>
+
+    <!-- ================= LISTA DE PRODUTOS ================= -->
+    <section class="tela" id="tela-produtos">
+      <div class="conteudo">
+        <h1 class="titulo-pagina" id="titulo-produtos">Produtos</h1>
+        <p class="subtitulo" id="contagem-produtos"></p>
+
+        <button class="btn-contorno btn-filtros" onclick="alternarFiltros()">Filtros</button>
+
+        <div class="layout-produtos">
+          <aside class="filtros" id="filtros">
+            <h3>Filtrar por</h3>
+
+            <div class="grupo-filtro">
+              <h4>Tamanho</h4>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="tamanho" value="PP" onchange="listarProdutos()"><span>PP</span></label>
+                <label class="chip"><input type="checkbox" name="tamanho" value="P" onchange="listarProdutos()"><span>P</span></label>
+                <label class="chip"><input type="checkbox" name="tamanho" value="M" onchange="listarProdutos()"><span>M</span></label>
+                <label class="chip"><input type="checkbox" name="tamanho" value="G" onchange="listarProdutos()"><span>G</span></label>
+                <label class="chip"><input type="checkbox" name="tamanho" value="GG" onchange="listarProdutos()"><span>GG</span></label>
+                <label class="chip"><input type="checkbox" name="tamanho" value="36" onchange="listarProdutos()"><span>36</span></label>
+                <label class="chip"><input type="checkbox" name="tamanho" value="37" onchange="listarProdutos()"><span>37</span></label>
+                <label class="chip"><input type="checkbox" name="tamanho" value="38" onchange="listarProdutos()"><span>38</span></label>
+              </div>
+            </div>
+
+            <div class="grupo-filtro">
+              <h4>Cor</h4>
+              <div class="chips">
+                <label class="bolinha"><input type="checkbox" name="cor" value="Rosa" onchange="listarProdutos()"><span style="background:#D982A0" title="Rosa"></span></label>
+                <label class="bolinha"><input type="checkbox" name="cor" value="Vinho" onchange="listarProdutos()"><span style="background:#8E4A63" title="Vinho"></span></label>
+                <label class="bolinha"><input type="checkbox" name="cor" value="Bege" onchange="listarProdutos()"><span style="background:#D8BFA8" title="Bege"></span></label>
+                <label class="bolinha"><input type="checkbox" name="cor" value="Preto" onchange="listarProdutos()"><span style="background:#2B2B2B" title="Preto"></span></label>
+                <label class="bolinha"><input type="checkbox" name="cor" value="Branco" onchange="listarProdutos()"><span style="background:#FFFFFF" title="Branco"></span></label>
+                <label class="bolinha"><input type="checkbox" name="cor" value="Azul" onchange="listarProdutos()"><span style="background:#7FA3B8" title="Azul"></span></label>
+              </div>
+            </div>
+
+            <div class="grupo-filtro">
+              <h4>Preço</h4>
+              <label class="opcao"><input type="checkbox" name="preco" value="0-50" onchange="listarProdutos()"> Até R$ 50</label>
+              <label class="opcao"><input type="checkbox" name="preco" value="50-100" onchange="listarProdutos()"> R$ 50 a R$ 100</label>
+              <label class="opcao"><input type="checkbox" name="preco" value="100-200" onchange="listarProdutos()"> R$ 100 a R$ 200</label>
+              <label class="opcao"><input type="checkbox" name="preco" value="200-99999" onchange="listarProdutos()"> Acima de R$ 200</label>
+            </div>
+
+            <div class="grupo-filtro">
+              <h4>Tipo de peça</h4>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Vestidos" onchange="listarProdutos()"> Vestidos</label>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Blusas" onchange="listarProdutos()"> Blusas</label>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Calças" onchange="listarProdutos()"> Calças</label>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Jaquetas" onchange="listarProdutos()"> Jaquetas</label>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Saias" onchange="listarProdutos()"> Saias</label>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Macacões" onchange="listarProdutos()"> Macacões</label>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Sandálias" onchange="listarProdutos()"> Sandálias</label>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Tênis" onchange="listarProdutos()"> Tênis</label>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Bolsas" onchange="listarProdutos()"> Bolsas</label>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Joias" onchange="listarProdutos()"> Joias</label>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Maquiagem" onchange="listarProdutos()"> Maquiagem</label>
+              <label class="opcao"><input type="checkbox" name="tipo" value="Skincare" onchange="listarProdutos()"> Skincare</label>
+            </div>
+
+            <button class="btn-contorno" onclick="limparFiltros(); listarProdutos()">Limpar filtros</button>
+          </aside>
+
+          <div>
+            <div class="barra-ordenar">
+              <label for="ordenar">Ordenar por:</label>
+              <select id="ordenar" onchange="listarProdutos()">
+                <option value="popular">Mais populares</option>
+                <option value="menor">Menor preço</option>
+                <option value="maior">Maior preço</option>
+                <option value="nome">Nome (A–Z)</option>
+              </select>
+            </div>
+            <div class="grade-produtos grade-3" id="lista-produtos"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DETALHE DO PRODUTO ================= -->
+    <section class="tela" id="tela-produto">
+      <div class="conteudo" id="conteudo-produto"></div>
+    </section>
+
+    <!-- ================= CARRINHO ================= -->
+    <section class="tela" id="tela-carrinho">
+      <div class="conteudo">
+        <h1 class="titulo-pagina">Meu carrinho</h1>
+        <div class="layout-carrinho">
+          <div id="itens-carrinho"></div>
+          <aside class="resumo" id="resumo-carrinho"></aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHECKOUT ================= -->
+    <section class="tela" id="tela-checkout">
+      <div class="conteudo">
+        <h1 class="titulo-pagina">Finalizar compra</h1>
+        <p class="aviso-demo">Atenção: esta é uma finalização demonstrativa, feita para um projeto escolar. Nenhum pagamento real é realizado.</p>
+        <div class="layout-carrinho">
+          <form class="formulario formulario-largo" onsubmit="finalizarPedido(event)">
+            <h3>Seus dados</h3>
+            <label for="ck-nome">Nome completo</label>
+            <input type="text" id="ck-nome" required>
+            <label for="ck-email">E-mail</label>
+            <input type="email" id="ck-email" required>
+            <label for="ck-endereco">Endereço de entrega</label>
+            <input type="text" id="ck-endereco" required>
+            <label for="ck-cidade">Cidade</label>
+            <input type="text" id="ck-cidade" required>
+            <label for="ck-pagamento">Forma de pagamento (demonstrativa)</label>
+            <select id="ck-pagamento">
+              <option>Pix</option>
+              <option>Cartão de crédito</option>
+              <option>Boleto</option>
+            </select>
+            <button type="submit" class="btn-principal">Finalizar pedido</button>
+          </form>
+          <aside class="resumo" id="resumo-checkout"></aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONFIRMAÇÃO ================= -->
+    <section class="tela" id="tela-confirmacao">
+      <div class="conteudo caixa-central">
+        <h1 class="titulo-pagina">Pedido recebido!</h1>
+        <p id="texto-confirmacao"></p>
+        <p class="aviso-demo">Lembrete: esta compra foi apenas uma demonstração.</p>
+        <button class="btn-principal" onclick="mostrarTela('inicio')">Voltar para a loja</button>
+      </div>
+    </section>
+
+    <!-- ================= FAVORITOS ================= -->
+    <section class="tela" id="tela-favoritos">
+      <div class="conteudo">
+        <h1 class="titulo-pagina">Meus favoritos</h1>
+        <div class="grade-produtos" id="lista-favoritos"></div>
+      </div>
+    </section>
+
+    <!-- ================= LOGIN ================= -->
+    <section class="tela" id="tela-login">
+      <div class="conteudo">
+        <form class="formulario" onsubmit="entrar(event)">
+          <h1>Entrar</h1>
+          <p class="aviso-demo">Login demonstrativo: nenhum dado é salvo.</p>
+          <label for="login-email">E-mail</label>
+          <input type="email" id="login-email" required>
+          <label for="login-senha">Senha</label>
+          <input type="password" id="login-senha" required>
+          <button type="submit" class="btn-principal">Entrar</button>
+          <p class="troca-form">Ainda não tem conta? <button type="button" class="link" onclick="mostrarTela('cadastro')">Cadastre-se</button></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= CADASTRO ================= -->
+    <section class="tela" id="tela-cadastro">
+      <div class="conteudo">
+        <form class="formulario" onsubmit="cadastrar(event)">
+          <h1>Criar conta</h1>
+          <p class="aviso-demo">Cadastro demonstrativo: nenhum dado é salvo.</p>
+          <label for="cad-nome">Nome</label>
+          <input type="text" id="cad-nome" required>
+          <label for="cad-email">E-mail</label>
+          <input type="email" id="cad-email" required>
+          <label for="cad-senha">Senha (mínimo 6 caracteres)</label>
+          <input type="password" id="cad-senha" minlength="6" required>
+          <label for="cad-senha2">Confirmar senha</label>
+          <input type="password" id="cad-senha2" minlength="6" required>
+          <button type="submit" class="btn-principal">Cadastrar</button>
+          <p class="troca-form">Já tem conta? <button type="button" class="link" onclick="mostrarTela('login')">Entrar</button></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= CUPONS ================= -->
+    <section class="tela" id="tela-cupons">
+      <div class="conteudo">
+        <h1 class="titulo-pagina">Cupons</h1>
+        <p class="subtitulo">Use os códigos abaixo no carrinho.</p>
+        <div class="grade-info">
+          <div class="info-bloco">
+            <h3>LUNNA10</h3>
+            <p>10% de desconto em toda a compra.</p>
+          </div>
+          <div class="info-bloco">
+            <h3>BEMVINDA</h3>
+            <p>5% de desconto na primeira compra.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INFORMAÇÕES ================= -->
+    <section class="tela" id="tela-informacoes">
+      <div class="conteudo">
+        <h1 class="titulo-pagina">Informações</h1>
+        <div class="grade-info">
+          <div class="info-bloco">
+            <h3>Sobre nós</h3>
+            <p>A LUNNA é uma loja virtual de moda, calçados, acessórios e beleza criada para quem gosta de se sentir bem em todos os momentos. Este site é um projeto escolar da disciplina de Criação de Sites.</p>
+          </div>
+          <div class="info-bloco">
+            <h3>Trocas e devoluções</h3>
+            <p>Você poderá solicitar a troca em até 30 dias após o recebimento, com a peça sem uso e com a etiqueta.</p>
+          </div>
+          <div class="info-bloco">
+            <h3>Frete</h3>
+            <p>O frete custa R$ 15,90 e é grátis em compras a partir de R$ 199,00.</p>
+          </div>
+          <div class="info-bloco">
+            <h3>Termos de uso e privacidade</h3>
+            <p>Os dados digitados neste site não são enviados para nenhum servidor. O carrinho e os favoritos ficam salvos apenas no seu navegador.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTATO ================= -->
+    <section class="tela" id="tela-contato">
+      <div class="conteudo">
+        <form class="formulario" onsubmit="enviarContato(event)">
+          <h1>Fale com a gente</h1>
+          <label for="ct-nome">Nome</label>
+          <input type="text" id="ct-nome" required>
+          <label for="ct-email">E-mail</label>
+          <input type="email" id="ct-email" required>
+          <label for="ct-mensagem">Mensagem</label>
+          <textarea id="ct-mensagem" rows="5" required></textarea>
+          <button type="submit" class="btn-principal">Enviar mensagem</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="rodape">
+    <div class="conteudo rodape-grade">
+      <div>
+        <img class="rodape-logo" src="logo.png" alt="LUNNA">
+        <p>Seu estilo, do seu jeito. Criando momentos únicos através da moda e da autenticidade.</p>
+      </div>
+      <div>
+        <h4>Institucional</h4>
+        <button onclick="mostrarTela('informacoes')">Sobre nós</button>
+        <button onclick="mostrarTela('cupons')">Cupons</button>
+        <button onclick="mostrarTela('contato')">Fale conosco</button>
+      </div>
+      <div>
+        <h4>Ajuda</h4>
+        <button onclick="mostrarTela('informacoes')">Trocas e devoluções</button>
+        <button onclick="mostrarTela('informacoes')">Termos de uso</button>
+        <button onclick="mostrarTela('informacoes')">Privacidade</button>
+      </div>
+      <div>
+        <h4>Newsletter</h4>
+        <p>Receba novidades e ofertas exclusivas.</p>
+        <form class="newsletter" onsubmit="assinarNewsletter(event)">
+          <input type="email" id="campo-newsletter" placeholder="Seu e-mail" aria-label="Seu e-mail" required>
+          <button type="submit" aria-label="Assinar newsletter">OK</button>
+        </form>
+      </div>
+    </div>
+    <p class="rodape-copy">© 2026 LUNNA – Projeto escolar demonstrativo. Nenhuma compra é real.</p>
+  </footer>
+
+  <!-- Área das notificações -->
+  <div class="avisos" id="avisos"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
