@@ -22,7 +22,7 @@ const produtos = [
     descricao: "Vestido midi de tecido leve, com modelagem confortável e alça fina. Perfeito para diversas ocasiões.",
     caracteristicas: "Tecido leve de viscose, forro interno, fecho de zíper nas costas e comprimento midi.",
     cores: ["Rosa", "Vinho", "Bege"], tamanhos: ["PP", "P", "M", "G", "GG"],
-    imagem: "imagens/vestido-midi.jpg"
+    imagem: "imagens/vestido-midi.svg"
   },
   {
     id: 2, nome: "Blusa Cropped", categoria: "roupas", tipo: "Blusas",
@@ -30,7 +30,7 @@ const produtos = [
     descricao: "Blusa cropped básica de algodão, ideal para combinar com calças e saias.",
     caracteristicas: "100% algodão, gola redonda e manga curta.",
     cores: ["Branco", "Rosa"], tamanhos: ["PP", "P", "M", "G"],
-    imagem: "imagens/blusa-cropped.jpg"
+    imagem: "imagens/blusa-cropped.svg"
   },
   {
     id: 3, nome: "Calça Wide Leg", categoria: "roupas", tipo: "Calças",
@@ -38,7 +38,7 @@ const produtos = [
     descricao: "Calça de pernas largas com cintura alta e caimento fluido.",
     caracteristicas: "Cintura alta, bolsos laterais e tecido de alfaiataria leve.",
     cores: ["Bege", "Preto"], tamanhos: ["P", "M", "G", "GG"],
-    imagem: "imagens/calca-wide-leg.jpg"
+    imagem: "imagens/calca-wide-leg.svg"
   },
   {
     id: 4, nome: "Jaqueta Jeans", categoria: "roupas", tipo: "Jaquetas",
@@ -46,7 +46,7 @@ const produtos = [
     descricao: "Jaqueta jeans clássica, com lavagem clara e bolsos frontais.",
     caracteristicas: "Jeans com elastano, botões metálicos e dois bolsos.",
     cores: ["Azul"], tamanhos: ["P", "M", "G"],
-    imagem: "imagens/jaqueta-jeans.jpg"
+    imagem: "imagens/jaqueta-jeans.svg"
   },
   {
     id: 5, nome: "Saia Plissada", categoria: "roupas", tipo: "Saias",
@@ -54,7 +54,7 @@ const produtos = [
     descricao: "Saia plissada midi com cós elástico e movimento delicado.",
     caracteristicas: "Poliéster plissado, cós elástico e comprimento midi.",
     cores: ["Rosa", "Bege"], tamanhos: ["PP", "P", "M", "G"],
-    imagem: "imagens/saia-plissada.jpg"
+    imagem: "imagens/saia-plissada.svg"
   },
   {
     id: 6, nome: "Macacão Preto", categoria: "roupas", tipo: "Macacões",
@@ -62,7 +62,7 @@ const produtos = [
     descricao: "Macacão pantalona preto, elegante e confortável para o dia a dia.",
     caracteristicas: "Alças ajustáveis, cintura marcada e tecido de crepe.",
     cores: ["Preto"], tamanhos: ["P", "M", "G"],
-    imagem: "imagens/macacao.jpg"
+    imagem: "imagens/macacao.svg"
   },
   {
     id: 7, nome: "Sandália Salto Bloco", categoria: "calcados", tipo: "Sandálias",
@@ -70,7 +70,7 @@ const produtos = [
     descricao: "Sandália com salto bloco baixo, muito confortável para usar o dia todo.",
     caracteristicas: "Salto de 5 cm, tira ajustável no tornozelo e solado antiderrapante.",
     cores: ["Rosa", "Bege"], tamanhos: ["36", "37", "38", "39"],
-    imagem: "imagens/sandalia.jpg"
+    imagem: "imagens/sandalia.svg"
   },
   {
     id: 8, nome: "Tênis Casual Branco", categoria: "calcados", tipo: "Tênis",
@@ -78,7 +78,7 @@ const produtos = [
     descricao: "Tênis branco casual, combina com qualquer look.",
     caracteristicas: "Cabedal sintético, palmilha macia e solado de borracha.",
     cores: ["Branco"], tamanhos: ["36", "37", "38", "39"],
-    imagem: "imagens/tenis.jpg"
+    imagem: "imagens/tenis.svg"
   },
   {
     id: 9, nome: "Bolsa Tracada", categoria: "acessorios", tipo: "Bolsas",
@@ -86,7 +86,7 @@ const produtos = [
     descricao: "Bolsa estruturada com alça de mão e alça transversal removível.",
     caracteristicas: "Material sintético, fecho com zíper, 24 cm de largura.",
     cores: ["Vinho", "Rosa"], tamanhos: ["Único"],
-    imagem: "imagens/bolsa-tracada.jpg"
+    imagem: "imagens/bolsa-tracada.svg"
   },
   {
     id: 10, nome: "Brinco Lua", categoria: "acessorios", tipo: "Joias",
@@ -94,7 +94,7 @@ const produtos = [
     descricao: "Brinco delicado em formato de lua, inspirado na identidade da LUNNA.",
     caracteristicas: "Banhado a ouro, hipoalergênico e fecho tipo tarraxa.",
     cores: ["Rosa"], tamanhos: ["Único"],
-    imagem: "imagens/brinco-lua.jpg"
+    imagem: "imagens/brinco-lua.svg"
   },
   {
     id: 11, nome: "Gloss Labial", categoria: "beleza", tipo: "Maquiagem",
@@ -102,7 +102,7 @@ const produtos = [
     descricao: "Gloss com brilho intenso e toque hidratante, não é pegajoso.",
     caracteristicas: "Contém 6 ml, fórmula vegana e fragrância suave.",
     cores: ["Rosa"], tamanhos: ["Único"],
-    imagem: "imagens/gloss-labial.jpg"
+    imagem: "imagens/gloss-labial.svg"
   },
   {
     id: 12, nome: "Hidratante Facial", categoria: "beleza", tipo: "Skincare",
@@ -110,7 +110,7 @@ const produtos = [
     descricao: "Hidratante facial leve, de absorção rápida, para o uso diário.",
     caracteristicas: "Contém 50 g, com ácido hialurônico e fator de proteção 15.",
     cores: ["Branco"], tamanhos: ["Único"],
-    imagem: "imagens/hidratante.jpg"
+    imagem: "imagens/hidratante.svg"
   }
 ];
 
@@ -131,8 +131,31 @@ const cupons = { LUNNA10: 0.10, BEMVINDA: 0.05 };
 /* =========================================================
    2. VARIÁVEIS E FUNÇÕES DE APOIO
    ========================================================= */
-let carrinho = lerLocal("lunnaCarrinho");
-let favoritos = lerLocal("lunnaFavoritos");
+let carrinho = limparCarrinho(lerLocal("lunnaCarrinho"));
+let favoritos = limparFavoritos(lerLocal("lunnaFavoritos"));
+
+// Remove do carrinho itens antigos ou inválidos (evita "NaN" nos valores)
+function limparCarrinho(lista) {
+  const limpa = [];
+  lista.forEach(function (item) {
+    const p = buscarProduto(Number(item.id));
+    const qtd = Number(item.qtd || item.quantidade);
+    if (p && qtd >= 1) {
+      limpa.push({
+        id: p.id,
+        cor: item.cor || p.cores[0],
+        tamanho: item.tamanho || p.tamanhos[0],
+        qtd: qtd
+      });
+    }
+  });
+  return limpa;
+}
+
+// Mantém só favoritos que existem na lista de produtos
+function limparFavoritos(lista) {
+  return lista.map(Number).filter(function (id) { return buscarProduto(id); });
+}
 let cupomAtivo = "";
 
 let categoriaAtual = "";
@@ -230,16 +253,22 @@ function montarInicio() {
 // Monta o HTML de um card de produto
 function criarCard(p) {
   let precoHtml = formatarPreco(p.preco);
+  let selo = "";
   if (p.precoAntigo) {
     precoHtml += '<span class="preco-antigo">' + formatarPreco(p.precoAntigo) + "</span>";
+    const desconto = Math.round((1 - p.preco / p.precoAntigo) * 100);
+    selo = '<span class="selo">-' + desconto + "%</span>";
   }
   return '<article class="card">' +
+    selo +
     '<button class="btn-fav" data-fav="' + p.id + '" onclick="alternarFavorito(' + p.id + ')" aria-label="Favoritar">♡</button>' +
     '<div class="card-img" onclick="abrirProduto(' + p.id + ')">' +
       '<img src="' + p.imagem + '" alt="' + p.nome + '" onerror="this.style.visibility=\'hidden\'">' +
     "</div>" +
+    '<p class="card-tipo">' + p.tipo + "</p>" +
     '<h3 onclick="abrirProduto(' + p.id + ')">' + p.nome + "</h3>" +
     '<p class="preco">' + precoHtml + "</p>" +
+    '<p class="parcelas">ou 3x de ' + formatarPreco(p.preco / 3) + " sem juros</p>" +
     '<button class="btn-pequeno" onclick="adicionarRapido(' + p.id + ')">Adicionar ao carrinho</button>' +
     "</article>";
 }

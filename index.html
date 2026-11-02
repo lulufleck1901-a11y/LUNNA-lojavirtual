@@ -11,13 +11,16 @@
 </head>
 <body>
 
+  <!-- Faixa de avisos -->
+  <div class="faixa-aviso">Frete grátis em compras acima de R$ 199 e 5% de desconto na primeira compra com o cupom BEMVINDA</div>
+
   <!-- ================= CABEÇALHO ================= -->
   <header class="cabecalho">
     <div class="conteudo cabecalho-topo">
       <button class="btn-menu" onclick="alternarMenu()" aria-label="Abrir menu">☰</button>
 
       <button class="logo" onclick="mostrarTela('inicio')" aria-label="Ir para a página inicial">
-        <img src="logo.png" alt="LUNNA">
+        <img src="imagens/logo.png" alt="LUNNA">
       </button>
 
       <form class="busca" onsubmit="pesquisar(event)">
@@ -31,13 +34,16 @@
         <button onclick="mostrarTela('favoritos')" aria-label="Favoritos">
           <svg viewBox="0 0 24 24"><path d="M12 21s-8-5.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 11-8 11z"/></svg>
           <span class="contador" id="contador-favoritos">0</span>
+          <span class="rotulo">Favoritos</span>
         </button>
         <button onclick="mostrarTela('carrinho')" aria-label="Carrinho">
           <svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l3 12h11l2-8H6"/></svg>
           <span class="contador" id="contador-carrinho">0</span>
+          <span class="rotulo">Carrinho</span>
         </button>
         <button onclick="mostrarTela('login')" aria-label="Minha conta">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+          <span class="rotulo">Entrar</span>
         </button>
       </div>
     </div>
@@ -66,23 +72,33 @@
     <section class="tela ativa" id="tela-inicio">
       <div class="banner">
         <div class="banner-texto">
-          <p>Nova coleção</p>
+          <p class="banner-etiqueta">Nova coleção</p>
           <h1>Seu estilo,<br>do seu jeito.</h1>
-          <p>Roupas, acessórios e beleza para todos os seus momentos.</p>
+          <p class="banner-frase">Roupas, acessórios e beleza para todos os seus momentos.</p>
           <button class="btn-principal" onclick="verCategoria('')">Compre agora</button>
         </div>
         <div class="banner-imagem">
-          <img src="imagens/banner.jpg" alt="Modelo vestindo a nova coleção" onerror="this.style.visibility='hidden'">
+          <img src="imagens/banner.svg" alt="Modelo vestindo a nova coleção" onerror="this.style.visibility='hidden'">
+        </div>
+      </div>
+
+      <!-- Benefícios da loja -->
+      <div class="beneficios-loja">
+        <div class="conteudo beneficios-grade">
+          <div><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><p><strong>Frete grátis</strong>acima de R$ 199</p></div>
+          <div><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-4L4 9M4 4v5h5M4 13a8 8 0 0 0 14 4l2-2M20 20v-5h-5"/></svg><p><strong>Troca fácil</strong>em até 30 dias</p></div>
+          <div><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><p><strong>Compra segura</strong>100% protegida</p></div>
+          <div><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><p><strong>Parcele em 3x</strong>sem juros</p></div>
         </div>
       </div>
 
       <div class="conteudo">
         <h2 class="titulo-secao">Compre por categoria</h2>
         <div class="categorias">
-          <button onclick="verCategoria('roupas')"><span>👗</span>Roupas</button>
-          <button onclick="verCategoria('calcados')"><span>👠</span>Calçados</button>
-          <button onclick="verCategoria('acessorios')"><span>👜</span>Acessórios</button>
-          <button onclick="verCategoria('beleza')"><span>💄</span>Beleza</button>
+          <button onclick="verCategoria('roupas')"><span><img src="imagens/vestido-midi.svg" alt="Roupas"></span>Roupas</button>
+          <button onclick="verCategoria('calcados')"><span><img src="imagens/sandalia.svg" alt="Calçados"></span>Calçados</button>
+          <button onclick="verCategoria('acessorios')"><span><img src="imagens/bolsa-tracada.svg" alt="Acessórios"></span>Acessórios</button>
+          <button onclick="verCategoria('beleza')"><span><img src="imagens/gloss-labial.svg" alt="Beleza"></span>Beleza</button>
         </div>
 
         <div class="titulo-linha">
@@ -97,8 +113,8 @@
             <p>Cuidado de você, todos os dias.</p>
             <button class="link" onclick="verCategoria('beleza')">Descubra seus favoritos</button>
           </div>
-          <div class="faixa-imagem"><img src="imagens/gloss-labial.jpg" alt="Gloss labial" onerror="this.style.visibility='hidden'"></div>
-          <div class="faixa-imagem"><img src="imagens/hidratante.jpg" alt="Hidratante facial" onerror="this.style.visibility='hidden'"></div>
+          <div class="faixa-imagem"><img src="imagens/gloss-labial.svg" alt="Gloss labial" onerror="this.style.visibility='hidden'"></div>
+          <div class="faixa-imagem"><img src="imagens/hidratante.svg" alt="Hidratante facial" onerror="this.style.visibility='hidden'"></div>
         </div>
 
         <div class="titulo-linha">
@@ -378,7 +394,10 @@
         </form>
       </div>
     </div>
-    <p class="rodape-copy">© 2026 LUNNA – Projeto escolar demonstrativo. Nenhuma compra é real.</p>
+    <div class="rodape-base">
+      <p>© 2026 LUNNA. Projeto escolar demonstrativo, nenhuma compra é real.</p>
+      <div class="pagamentos"><span>Pix</span><span>Visa</span><span>Mastercard</span><span>Boleto</span></div>
+    </div>
   </footer>
 
   <!-- Área das notificações -->
