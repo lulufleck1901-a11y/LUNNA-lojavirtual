@@ -1,530 +1,1096 @@
+// LUNNA — funcionalidades da loja virtual
 
+
+// LISTA DE PRODUTOS
 const produtos = [
+
     {
         id: 1,
         nome: "Vestido Midi Lunna",
-        descricao: "Vestido versátil para diferentes ocasiões.",
-        preco: 129.90,
         categoria: "Roupas",
-        vendedor: "Lunna Fashion",
-        imagemTexto: "VESTIDO"
+        preco: 129.90,
+        cor: "Rosa",
+        tamanho: "P, M, G",
+        imagem: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=700&q=85",
+        descricao: "Vestido midi delicado, com modelagem confortável e caimento leve. Perfeito para diferentes ocasiões.",
+        popularidade: 10
     },
+
     {
         id: 2,
-        nome: "Blusa Casual",
-        descricao: "Blusa confortável para o dia a dia.",
-        preco: 79.90,
+        nome: "Blusa Cropped",
         categoria: "Roupas",
-        vendedor: "Estilo Rosa",
-        imagemTexto: "BLUSA"
+        preco: 79.90,
+        cor: "Branco",
+        tamanho: "P, M, G",
+        imagem: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=700&q=85",
+        descricao: "Blusa versátil para compor looks casuais e modernos.",
+        popularidade: 9
     },
+
     {
         id: 3,
         nome: "Bolsa Tiracolo",
-        descricao: "Bolsa prática para completar seu visual.",
-        preco: 159.90,
         categoria: "Acessórios",
-        vendedor: "Acessórios Luna",
-        imagemTexto: "BOLSAS"
+        preco: 159.90,
+        cor: "Rosa",
+        tamanho: "Único",
+        imagem: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=85",
+        descricao: "Bolsa compacta e prática para acompanhar sua rotina.",
+        popularidade: 8
     },
+
     {
         id: 4,
         nome: "Gloss Labial",
-        descricao: "Gloss para dar brilho à sua maquiagem.",
-        preco: 49.90,
         categoria: "Beleza",
-        vendedor: "Beauty Pink",
-        imagemTexto: "BELEZA"
+        preco: 49.90,
+        cor: "Rosa",
+        tamanho: "Único",
+        imagem: "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?auto=format&fit=crop&w=700&q=85",
+        descricao: "Gloss com acabamento luminoso para completar sua produção.",
+        popularidade: 9
     },
+
     {
         id: 5,
-        nome: "Tênis Casual",
-        descricao: "Tênis para combinar com vários estilos.",
-        preco: 139.90,
+        nome: "Calçado Casual",
         categoria: "Calçados",
-        vendedor: "Passo Leve",
-        imagemTexto: "CALÇADOS"
+        preco: 119.90,
+        cor: "Bege",
+        tamanho: "34 ao 39",
+        imagem: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=700&q=85",
+        descricao: "Calçado confortável e versátil para o dia a dia.",
+        popularidade: 7
     },
+
     {
         id: 6,
-        nome: "Colar Delicado",
-        descricao: "Acessório delicado para completar o look.",
-        preco: 39.90,
-        categoria: "Acessórios",
-        vendedor: "Acessórios Luna",
-        imagemTexto: "COLARES"
+        nome: "Jaqueta Jeans",
+        categoria: "Roupas",
+        preco: 189.90,
+        cor: "Azul",
+        tamanho: "P, M, G",
+        imagem: "https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=700&q=85",
+        descricao: "Jaqueta jeans para criar combinações despojadas.",
+        popularidade: 6
     },
+
     {
         id: 7,
-        nome: "Kit de Beleza",
-        descricao: "Kit demonstrativo de produtos de beleza.",
-        preco: 89.90,
-        categoria: "Beleza",
-        vendedor: "Beauty Pink",
-        imagemTexto: "CUIDADOS"
+        nome: "Colar Delicado",
+        categoria: "Acessórios",
+        preco: 59.90,
+        cor: "Bege",
+        tamanho: "Único",
+        imagem: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=85",
+        descricao: "Acessório delicado para complementar diferentes estilos.",
+        popularidade: 8
     },
+
     {
         id: 8,
-        nome: "Sandália Elegante",
-        descricao: "Sandália para diferentes ocasiões.",
-        preco: 99.90,
-        categoria: "Calçados",
-        vendedor: "Passo Leve",
-        imagemTexto: "SANDÁLIAS"
+        nome: "Hidratante Corporal",
+        categoria: "Beleza",
+        preco: 69.90,
+        cor: "Branco",
+        tamanho: "Único",
+        imagem: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=85",
+        descricao: "Produto demonstrativo para sua rotina de autocuidado.",
+        popularidade: 5
     }
+
 ];
 
-let carrinho = [];
-let favoritos = [];
-let categoriaAtual = "Todas";
-let descontoAtual = 0;
-let cupomAplicado = false;
-let proximoPedido = 1001;
 
+// VARIÁVEIS DO SITE
+let categoriaAtual = "Todos";
+let termoAtual = "";
+let produtoAtual = null;
+
+
+// DADOS SALVOS NO NAVEGADOR
+let carrinho = JSON.parse(
+    localStorage.getItem("lunnaCarrinho") || "[]"
+);
+
+let favoritos = JSON.parse(
+    localStorage.getItem("lunnaFavoritos") || "[]"
+);
+
+
+// FORMATAÇÃO DE PREÇOS
 function moeda(valor) {
+
     return valor.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
     });
+
 }
 
-function mostrarTela(nome) {
+
+// SALVAR DADOS
+function salvarDados() {
+
+    localStorage.setItem(
+        "lunnaCarrinho",
+        JSON.stringify(carrinho)
+    );
+
+    localStorage.setItem(
+        "lunnaFavoritos",
+        JSON.stringify(favoritos)
+    );
+
+    atualizarContador();
+
+}
+
+
+// ATUALIZAR CONTADOR DO CARRINHO
+function atualizarContador() {
+
+    const total = carrinho.reduce(
+        (soma, item) => soma + item.quantidade,
+        0
+    );
+
+    document.getElementById("contadorCarrinho").textContent = total;
+
+}
+
+
+// TROCAR DE PÁGINA
+function mostrarTela(id) {
+
     document.querySelectorAll(".tela").forEach(tela => {
-        tela.classList.add("escondida");
+
+        tela.classList.remove("ativa");
+
     });
 
-    const telaSelecionada = document.getElementById("tela-" + nome);
+    const tela = document.getElementById(id);
 
-    if (telaSelecionada) {
-        telaSelecionada.classList.remove("escondida");
+    if (tela) {
+
+        tela.classList.add("ativa");
+
     }
 
-    if (nome === "inicio") {
-        renderizarProdutos("lista-inicial", produtos.slice(0, 4));
-    }
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
-    if (nome === "produtos") {
+    if (id === "todosProdutos") {
         renderizarCatalogo();
     }
 
-    if (nome === "carrinho") {
-        renderizarCarrinho();
-    }
-
-    if (nome === "favoritos") {
+    if (id === "favoritos") {
         renderizarFavoritos();
     }
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function renderizarProdutos(elementoId, lista) {
-    const elemento = document.getElementById(elementoId);
-
-    if (!elemento) return;
-
-    if (lista.length === 0) {
-        elemento.innerHTML = "<p>Nenhum produto encontrado.</p>";
-        return;
+    if (id === "carrinho") {
+        renderizarCarrinho();
     }
 
-    elemento.innerHTML = lista.map(produto => `
-        <article class="produto">
-            <div class="produto-imagem">
-                ${produto.imagemTexto}
-            </div>
+    if (id === "checkout") {
+        renderizarResumoCheckout();
+    }
 
-            <div class="produto-conteudo">
-                <h3>${produto.nome}</h3>
-                <p>${produto.descricao}</p>
-                <p><small>Vendido por ${produto.vendedor}</small></p>
-                <p class="preco">${moeda(produto.preco)}</p>
-
-                <button onclick="verDetalhes(${produto.id})">
-                    Ver detalhes
-                </button>
-
-                <button onclick="adicionarCarrinho(${produto.id})">
-                    Adicionar ao carrinho
-                </button>
-
-                <button onclick="alternarFavorito(${produto.id})">
-                    ${favoritos.includes(produto.id)
-                        ? "Remover dos favoritos"
-                        : "Adicionar aos favoritos"}
-                </button>
-            </div>
-        </article>
-    `).join("");
 }
 
-function renderizarCatalogo() {
-    const pesquisa = document.getElementById("pesquisa")
-        .value.trim().toLowerCase();
 
-    const lista = produtos.filter(produto => {
-        const correspondePesquisa =
-            produto.nome.toLowerCase().includes(pesquisa) ||
-            produto.descricao.toLowerCase().includes(pesquisa) ||
-            produto.categoria.toLowerCase().includes(pesquisa);
+// IR PARA PRODUTOS
+function irParaProdutos() {
 
-        const correspondeCategoria =
-            categoriaAtual === "Todas" ||
-            produto.categoria === categoriaAtual;
+    categoriaAtual = "Todos";
+    termoAtual = "";
 
-        return correspondePesquisa && correspondeCategoria;
-    });
+    mostrarTela("todosProdutos");
 
-    document.getElementById("titulo-produtos").textContent =
-        categoriaAtual === "Todas"
-            ? "Nossos produtos"
-            : categoriaAtual;
-
-    renderizarProdutos("lista-produtos", lista);
-
-    document.getElementById("mensagem-produtos").textContent =
-        lista.length === 0
-            ? "Não encontramos produtos com esses critérios."
-            : "";
 }
 
+
+// FILTRAR CATEGORIAS
 function filtrarCategoria(categoria) {
+
     categoriaAtual = categoria;
-    document.getElementById("pesquisa").value = "";
-    mostrarTela("produtos");
+    termoAtual = "";
+
+    document.getElementById("campoPesquisa").value = "";
+
+    document.getElementById("filtroCategoria").value = categoria;
+
+    mostrarTela("todosProdutos");
+
 }
 
-function verDetalhes(id) {
-    const produto = produtos.find(item => item.id === id);
 
-    if (!produto) return;
+// CRIAR CARD DOS PRODUTOS
+function criarCard(produto) {
 
-    document.getElementById("detalhes-produto").innerHTML = `
-        <div class="produto-imagem">
-            ${produto.imagemTexto}
-        </div>
+    const favoritado = favoritos.includes(produto.id);
 
-        <div>
-            <p>${produto.categoria}</p>
-            <h2>${produto.nome}</h2>
-            <p>${produto.descricao}</p>
-            <p>Vendido por: ${produto.vendedor}</p>
-            <p class="preco">${moeda(produto.preco)}</p>
+    return `
 
-            <button class="botao"
+        <article class="product-card">
+
+            <button
+                class="favorite-button ${favoritado ? "active" : ""}"
+                onclick="alternarFavorito(${produto.id})"
+                aria-label="Adicionar aos favoritos">
+
+                ${favoritado ? "♥" : "♡"}
+
+            </button>
+
+
+            <button
+                class="product-image-button"
+                onclick="abrirProduto(${produto.id})">
+
+                <img
+                    src="${produto.imagem}"
+                    alt="${produto.nome}"
+                    loading="lazy">
+
+            </button>
+
+
+            <button
+                class="product-name"
+                onclick="abrirProduto(${produto.id})">
+
+                ${produto.nome}
+
+            </button>
+
+
+            <div class="product-price">
+
+                ${moeda(produto.preco)}
+
+            </div>
+
+
+            <button
+                class="quick-add"
                 onclick="adicionarCarrinho(${produto.id})">
+
                 Adicionar ao carrinho
+
             </button>
 
-            <button class="botao-secundario"
-                onclick="alternarFavorito(${produto.id})">
-                Adicionar ou remover favorito
-            </button>
-        </div>
+        </article>
+
     `;
 
-    mostrarTela("detalhes");
 }
 
-function adicionarCarrinho(id) {
-    const produto = produtos.find(item => item.id === id);
 
-    if (!produto) return;
+// MOSTRAR PRODUTOS NA PÁGINA INICIAL
+function renderizarInicio() {
 
-    const itemExistente = carrinho.find(item => item.id === id);
+    document.getElementById("gradeInicio").innerHTML =
+        produtos.slice(0, 4).map(criarCard).join("");
 
-    if (itemExistente) {
-        itemExistente.quantidade++;
-    } else {
-        carrinho.push({
-            ...produto,
-            quantidade: 1
-        });
-    }
-
-    atualizarQuantidade();
-    alert("Produto adicionado ao carrinho.");
 }
 
-function atualizarQuantidade() {
-    const quantidade = carrinho.reduce(
-        (total, item) => total + item.quantidade,
-        0
+
+// MOSTRAR CATÁLOGO
+function renderizarCatalogo() {
+
+    const categoria =
+        document.getElementById("filtroCategoria").value;
+
+    const precoMax =
+        Number(document.getElementById("filtroPreco").value);
+
+    const cor =
+        document.getElementById("filtroCor").value;
+
+    const ordenacao =
+        document.getElementById("ordenacao").value;
+
+
+    let lista = produtos.filter(p =>
+
+        (categoria === "Todos" || p.categoria === categoria) &&
+
+        (categoriaAtual === "Todos" || p.categoria === categoriaAtual) &&
+
+        p.preco <= precoMax &&
+
+        (cor === "Todas" || p.cor === cor) &&
+
+        p.nome.toLowerCase().includes(termoAtual.toLowerCase())
+
     );
 
-    document.getElementById("quantidade-carrinho").textContent =
-        quantidade;
+
+    // ORDENAR PRODUTOS
+
+    if (ordenacao === "menor") {
+
+        lista.sort((a, b) => a.preco - b.preco);
+
+    }
+
+    if (ordenacao === "maior") {
+
+        lista.sort((a, b) => b.preco - a.preco);
+
+    }
+
+    if (ordenacao === "popular") {
+
+        lista.sort((a, b) => b.popularidade - a.popularidade);
+
+    }
+
+    if (ordenacao === "recentes") {
+
+        lista.sort((a, b) => b.id - a.id);
+
+    }
+
+
+    // TÍTULO DOS RESULTADOS
+
+    document.getElementById("tituloResultados").textContent =
+
+        termoAtual
+            ? `Resultados para "${termoAtual}"`
+            : categoria !== "Todos"
+                ? categoria
+                : categoriaAtual !== "Todos"
+                    ? categoriaAtual
+                    : "Todos os produtos";
+
+
+    // QUANTIDADE DE PRODUTOS
+
+    document.getElementById("quantidadeResultados").textContent =
+        `${lista.length} produto(s) encontrado(s)`;
+
+
+    // MOSTRAR PRODUTOS
+
+    document.getElementById("gradeCatalogo").innerHTML =
+        lista.map(criarCard).join("");
+
+
+    // MENSAGEM QUANDO NÃO EXISTEM RESULTADOS
+
+    document.getElementById("semResultados")
+        .classList.toggle("hidden", lista.length !== 0);
+
+
+    // VALOR DO FILTRO
+
+    document.getElementById("valorPreco").textContent =
+        `Até ${moeda(precoMax)}`;
+
 }
 
-function mostrarCarrinho() {
+
+// ABRIR PRODUTO
+function abrirProduto(id) {
+
+    produtoAtual = produtos.find(p => p.id === id);
+
+    if (!produtoAtual) return;
+
+    const p = produtoAtual;
+
+    document.getElementById("detalheProduto").innerHTML = `
+
+        <div class="product-detail">
+
+            <div>
+
+                <img
+                    class="detail-main-image"
+                    src="${p.imagem}"
+                    alt="${p.nome}">
+
+                <div class="detail-thumbnails">
+
+                    <button>
+                        <img src="${p.imagem}" alt="Visualização do produto">
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-info">
+
+                <div class="breadcrumb">
+                    Início › ${p.categoria} › ${p.nome}
+                </div>
+
+
+                <h1>${p.nome}</h1>
+
+
+                <div class="rating">
+                    ★★★★★
+                    <span class="muted">
+                        (avaliações demonstrativas)
+                    </span>
+                </div>
+
+
+                <div class="detail-price">
+                    ${moeda(p.preco)}
+                </div>
+
+
+                <p class="detail-description">
+                    ${p.descricao}
+                </p>
+
+
+                <div class="option-group">
+
+                    <strong>Cor: ${p.cor}</strong>
+
+                    <button class="option-chip selected">
+                        ${p.cor}
+                    </button>
+
+                </div>
+
+
+                <div class="option-group">
+
+                    <strong>Tamanho: ${p.tamanho}</strong>
+
+                    ${p.tamanho.split(", ").map(t => `
+
+                        <button
+                            class="option-chip"
+                            onclick="selecionarOpcao(this)">
+
+                            ${t}
+
+                        </button>
+
+                    `).join("")}
+
+                </div>
+
+
+                <div class="quantity-control">
+
+                    <strong>Quantidade:</strong>
+
+                    <input
+                        id="quantidadeProduto"
+                        type="number"
+                        min="1"
+                        max="20"
+                        value="1">
+
+                </div>
+
+
+                <div class="detail-actions">
+
+                    <button
+                        class="primary-button"
+                        onclick="adicionarCarrinho(
+                            ${p.id},
+                            Number(document.getElementById('quantidadeProduto').value)
+                        )">
+
+                        Adicionar ao carrinho
+
+                    </button>
+
+
+                    <button
+                        class="outline-button"
+                        onclick="comprarAgora(${p.id})">
+
+                        Comprar agora
+
+                    </button>
+
+                </div>
+
+
+                <p class="muted small">
+                    ♡ Compra demonstrativa · Troca ilustrativa · Navegação segura
+                </p>
+
+
+                <details class="accordion" open>
+
+                    <summary>Descrição</summary>
+
+                    <p>${p.descricao}</p>
+
+                </details>
+
+
+                <details class="accordion">
+
+                    <summary>Características</summary>
+
+                    <p>
+                        Categoria: ${p.categoria}<br>
+                        Cor: ${p.cor}<br>
+                        Tamanho disponível: ${p.tamanho}
+                    </p>
+
+                </details>
+
+
+                <details class="accordion">
+
+                    <summary>Avaliações (0)</summary>
+
+                    <p>
+                        As avaliações exibidas neste projeto
+                        são apenas ilustrativas.
+                    </p>
+
+                </details>
+
+            </div>
+
+        </div>
+
+    `;
+
+    mostrarTela("produto");
+
+}
+
+
+// SELECIONAR TAMANHO
+function selecionarOpcao(botao) {
+
+    botao.parentElement
+        .querySelectorAll(".option-chip")
+        .forEach(b => b.classList.remove("selected"));
+
+    botao.classList.add("selected");
+
+}
+
+
+// ADICIONAR AO CARRINHO
+function adicionarCarrinho(id, quantidade = 1) {
+
+    const p = produtos.find(item => item.id === id);
+
+    quantidade = Math.max(
+        1,
+        Math.min(20, Number(quantidade) || 1)
+    );
+
+    const existente = carrinho.find(item => item.id === id);
+
+    if (existente) {
+
+        existente.quantidade = Math.min(
+            20,
+            existente.quantidade + quantidade
+        );
+
+    } else {
+
+        carrinho.push({
+            id,
+            quantidade
+        });
+
+    }
+
+    salvarDados();
+
+    alert(`${p.nome} foi adicionado ao carrinho.`);
+
+}
+
+
+// COMPRAR AGORA
+function comprarAgora(id) {
+
+    adicionarCarrinho(id, 1);
+
     mostrarTela("carrinho");
+
 }
 
-function alterarQuantidade(id, variacao) {
-    const item = carrinho.find(produto => produto.id === id);
+
+// ALTERAR QUANTIDADE
+function alterarQuantidade(id, valor) {
+
+    const item = carrinho.find(p => p.id === id);
 
     if (!item) return;
 
-    item.quantidade += variacao;
+    item.quantidade = Math.max(
+        1,
+        Math.min(20, Number(valor) || 1)
+    );
 
-    if (item.quantidade <= 0) {
-        carrinho = carrinho.filter(produto => produto.id !== id);
-    }
+    salvarDados();
 
-    atualizarQuantidade();
     renderizarCarrinho();
+
 }
 
-function removerItem(id) {
+
+// REMOVER PRODUTO DO CARRINHO
+function removerCarrinho(id) {
+
     carrinho = carrinho.filter(item => item.id !== id);
 
-    atualizarQuantidade();
+    salvarDados();
+
     renderizarCarrinho();
+
 }
 
-function calcularSubtotal() {
-    return carrinho.reduce(
-        (total, item) => total + item.preco * item.quantidade,
+
+// ADICIONAR OU REMOVER FAVORITOS
+function alternarFavorito(id) {
+
+    if (favoritos.includes(id)) {
+
+        favoritos = favoritos.filter(item => item !== id);
+
+    } else {
+
+        favoritos.push(id);
+
+    }
+
+    salvarDados();
+
+    renderizarInicio();
+
+    if (
+        document.getElementById("todosProdutos")
+            .classList.contains("ativa")
+    ) {
+
+        renderizarCatalogo();
+
+    }
+
+    if (
+        document.getElementById("favoritos")
+            .classList.contains("ativa")
+    ) {
+
+        renderizarFavoritos();
+
+    }
+
+}
+
+
+// MOSTRAR FAVORITOS
+function renderizarFavoritos() {
+
+    const lista = produtos.filter(p =>
+        favoritos.includes(p.id)
+    );
+
+    document.getElementById("gradeFavoritos").innerHTML =
+        lista.map(criarCard).join("");
+
+    document.getElementById("favoritosVazios")
+        .classList.toggle("hidden", lista.length > 0);
+
+}
+
+
+// MOSTRAR CARRINHO
+function renderizarCarrinho() {
+
+    const area = document.getElementById("conteudoCarrinho");
+
+    if (carrinho.length === 0) {
+
+        area.innerHTML = `
+
+            <div class="empty-message">
+
+                <h2>Seu carrinho está vazio</h2>
+
+                <p>Que tal encontrar algo especial?</p>
+
+                <button
+                    class="primary-button"
+                    onclick="mostrarTela('todosProdutos')">
+
+                    Continuar comprando
+
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const subtotal = carrinho.reduce(
+        (soma, item) =>
+            soma + produtos.find(p => p.id === item.id).preco * item.quantidade,
         0
     );
-}
 
-function calcularFrete() {
-    return carrinho.length === 0 ? 0 : 12;
-}
 
-function calcularTotal() {
-    return Math.max(
-        0,
-        calcularSubtotal() + calcularFrete() - descontoAtual
-    );
-}
+    area.innerHTML = `
 
-function renderizarCarrinho() {
-    const elemento = document.getElementById("itens-carrinho");
+        <div class="cart-layout">
 
-    if (carrinho.length === 0) {
-        elemento.innerHTML = "<p>Seu carrinho está vazio.</p>";
-    } else {
-        elemento.innerHTML = carrinho.map(item => `
-            <div class="item-carrinho">
-                <div>
-                    <h3>${item.nome}</h3>
-                    <p>${moeda(item.preco)} cada</p>
-                    <p>Quantidade: ${item.quantidade}</p>
-                    <p>Subtotal: ${moeda(item.preco * item.quantidade)}</p>
-                </div>
+            <div>
 
-                <div>
-                    <button onclick="alterarQuantidade(${item.id}, -1)">
-                        Diminuir
-                    </button>
+                ${carrinho.map(item => {
 
-                    <button onclick="alterarQuantidade(${item.id}, 1)">
-                        Aumentar
-                    </button>
+                    const p = produtos.find(
+                        prod => prod.id === item.id
+                    );
 
-                    <button onclick="removerItem(${item.id})">
-                        Remover
-                    </button>
-                </div>
+                    return `
+
+                        <div class="cart-item">
+
+                            <img src="${p.imagem}" alt="${p.nome}">
+
+                            <div>
+
+                                <h3>${p.nome}</h3>
+
+                                <p>${moeda(p.preco)}</p>
+
+                                <label class="small">
+
+                                    Quantidade:
+
+                                    <input
+                                        type="number"
+                                        min="1"
+                                        max="20"
+                                        value="${item.quantidade}"
+                                        onchange="alterarQuantidade(${p.id}, this.value)">
+
+                                </label>
+
+                            </div>
+
+                            <button
+                                class="remove-button"
+                                onclick="removerCarrinho(${p.id})">
+
+                                Remover
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+                }).join("")}
+
             </div>
-        `).join("");
-    }
 
-    document.getElementById("subtotal").textContent =
-        moeda(calcularSubtotal());
 
-    document.getElementById("frete").textContent =
-        moeda(calcularFrete());
+            <aside class="cart-summary">
 
-    document.getElementById("desconto").textContent =
-        moeda(descontoAtual);
+                <h2>Resumo da compra</h2>
 
-    document.getElementById("total-compra").textContent =
-        moeda(calcularTotal());
-}
+                <div class="summary-line">
 
-function aplicarCupom() {
-    const codigo = document.getElementById("codigo-cupom")
-        .value.trim().toUpperCase();
+                    <span>Subtotal</span>
 
-    const mensagem = document.getElementById("mensagem-cupom");
+                    <strong>${moeda(subtotal)}</strong>
 
-    if (carrinho.length === 0) {
-        mensagem.textContent =
-            "Adicione produtos antes de aplicar o cupom.";
-        return;
-    }
+                </div>
 
-    if (codigo === "LUNNA10" && !cupomAplicado) {
-        descontoAtual = calcularSubtotal() * 0.10;
-        cupomAplicado = true;
-        mensagem.textContent = "Cupom aplicado: 10% de desconto.";
-    } else if (codigo === "LUNNA10" && cupomAplicado) {
-        mensagem.textContent = "Este cupom já foi aplicado.";
-    } else {
-        mensagem.textContent = "Cupom inválido. Tente LUNNA10.";
-    }
 
-    renderizarCarrinho();
-}
+                <div class="summary-line">
 
-function abrirCheckout() {
-    if (carrinho.length === 0) {
-        alert("Adicione pelo menos um produto ao carrinho.");
-        return;
-    }
+                    <span>Frete demonstrativo</span>
 
-    document.getElementById("resumo-checkout").innerHTML = `
-        <p>Subtotal: ${moeda(calcularSubtotal())}</p>
-        <p>Frete demonstrativo: ${moeda(calcularFrete())}</p>
-        <p>Desconto: ${moeda(descontoAtual)}</p>
-        <h3>Total: ${moeda(calcularTotal())}</h3>
+                    <strong>Grátis</strong>
+
+                </div>
+
+
+                <div class="summary-line summary-total">
+
+                    <span>Total</span>
+
+                    <strong>${moeda(subtotal)}</strong>
+
+                </div>
+
+
+                <button
+                    class="primary-button full-button"
+                    onclick="mostrarTela('checkout')">
+
+                    Continuar compra
+
+                </button>
+
+
+                <button
+                    class="text-button full-button"
+                    onclick="mostrarTela('todosProdutos')">
+
+                    Continuar comprando
+
+                </button>
+
+            </aside>
+
+        </div>
+
     `;
 
-    atualizarFormaPagamento();
-    mostrarTela("checkout");
 }
 
-function atualizarParcelas() {
-    const pagamento = document.getElementById("pagamento").value;
 
-    if (pagamento !== "credito") return;
+// RESUMO DO CHECKOUT
+function renderizarResumoCheckout() {
 
-    const quantidade = Number(
-        document.getElementById("parcelas").value
+    const subtotal = carrinho.reduce(
+        (soma, item) =>
+            soma + produtos.find(p => p.id === item.id).preco * item.quantidade,
+        0
     );
 
-    const valor = calcularTotal() / quantidade;
+    document.getElementById("resumoCheckout").innerHTML = `
 
-    document.getElementById("valor-parcela").textContent =
-        `Simulação: ${quantidade}x de ${moeda(valor)}, sem juros.`;
+        <div class="summary-line">
+
+            <span>Itens</span>
+
+            <strong>
+                ${carrinho.reduce((s, i) => s + i.quantidade, 0)}
+            </strong>
+
+        </div>
+
+
+        <div class="summary-line">
+
+            <span>Subtotal</span>
+
+            <strong>${moeda(subtotal)}</strong>
+
+        </div>
+
+
+        <div class="summary-line">
+
+            <span>Frete demonstrativo</span>
+
+            <strong>Grátis</strong>
+
+        </div>
+
+
+        <div class="summary-line summary-total">
+
+            <span>Total</span>
+
+            <strong>${moeda(subtotal)}</strong>
+
+        </div>
+
+    `;
+
 }
 
-function atualizarFormaPagamento() {
-    const pagamento = document.getElementById("pagamento").value;
-    const campoParcelas = document.getElementById("campo-parcelas");
-    const parcelas = document.getElementById("parcelas");
 
-    if (pagamento === "credito") {
-        campoParcelas.classList.remove("escondida");
-        parcelas.required = true;
-        atualizarParcelas();
-    } else {
-        campoParcelas.classList.add("escondida");
-        parcelas.required = false;
-        document.getElementById("valor-parcela").textContent = "";
-    }
+// PESQUISAR PRODUTOS
+function pesquisar(evento) {
+
+    evento.preventDefault();
+
+    termoAtual = document.getElementById("campoPesquisa").value.trim();
+
+    categoriaAtual = "Todos";
+
+    document.getElementById("filtroCategoria").value = "Todos";
+
+    mostrarTela("todosProdutos");
+
 }
 
-function alternarFavorito(id) {
-    if (favoritos.includes(id)) {
-        favoritos = favoritos.filter(item => item !== id);
-    } else {
-        favoritos.push(id);
-    }
+document.getElementById("formPesquisa")
+    .addEventListener("submit", pesquisar);
 
-    renderizarProdutos("lista-inicial", produtos.slice(0, 4));
-    renderizarCatalogo();
-    renderizarFavoritos();
 
-    const telaDetalhes = document.getElementById("tela-detalhes");
+// FILTROS E ORDENAÇÃO
+[
+    "filtroCategoria",
+    "filtroPreco",
+    "filtroCor",
+    "ordenacao"
+].forEach(id => {
 
-    if (!telaDetalhes.classList.contains("escondida")) {
-        verDetalhes(id);
-    }
-}
+    document.getElementById(id).addEventListener("input", () => {
 
-function mostrarFavoritos() {
-    mostrarTela("favoritos");
-}
+        categoriaAtual = "Todos";
 
-function renderizarFavoritos() {
-    const lista = produtos.filter(
-        produto => favoritos.includes(produto.id)
-    );
-
-    renderizarProdutos("lista-favoritos", lista);
-}
-
-document.getElementById("pesquisa").addEventListener("input", () => {
-    categoriaAtual = "Todas";
-
-    const telaProdutos = document.getElementById("tela-produtos");
-    const telaVisivel = !telaProdutos.classList.contains("escondida");
-
-    if (!telaVisivel) {
-        mostrarTela("produtos");
-    } else {
         renderizarCatalogo();
-    }
+
+    });
+
 });
 
-document.getElementById("pagamento").addEventListener(
-    "change",
-    atualizarFormaPagamento
-);
 
-document.getElementById("parcelas").addEventListener(
-    "change",
-    atualizarParcelas
-);
+// LIMPAR FILTROS
+document.getElementById("limparFiltros")
+    .addEventListener("click", () => {
 
-document.getElementById("form-checkout").addEventListener(
-    "submit",
-    evento => {
+        document.getElementById("filtroCategoria").value = "Todos";
+
+        document.getElementById("filtroPreco").value = 300;
+
+        document.getElementById("filtroCor").value = "Todas";
+
+        document.getElementById("ordenacao").value = "popular";
+
+        categoriaAtual = "Todos";
+
+        termoAtual = "";
+
+        renderizarCatalogo();
+
+    });
+
+
+// CADASTRO
+document.getElementById("formCadastro")
+    .addEventListener("submit", evento => {
+
+        evento.preventDefault();
+
+        const dados = new FormData(evento.target);
+
+        const senha = dados.get("senha");
+
+        const confirmar = dados.get("confirmar");
+
+        const feedback = document.getElementById("feedbackCadastro");
+
+
+        if (senha !== confirmar) {
+
+            feedback.textContent = "As senhas não coincidem.";
+
+            return;
+
+        }
+
+
+        feedback.textContent =
+            "Cadastro demonstrativo validado! Você já pode acessar a tela de login.";
+
+        evento.target.reset();
+
+    });
+
+
+// LOGIN
+document.getElementById("formLogin")
+    .addEventListener("submit", evento => {
+
+        evento.preventDefault();
+
+        document.getElementById("feedbackLogin").textContent =
+            "Dados preenchidos. Esta é uma demonstração: não existe autenticação em servidor.";
+
+    });
+
+
+// FINALIZAR PEDIDO
+document.getElementById("formCheckout")
+    .addEventListener("submit", evento => {
+
         evento.preventDefault();
 
         if (carrinho.length === 0) {
-            alert("Seu carrinho está vazio.");
-            mostrarCarrinho();
+
+            alert("Adicione produtos ao carrinho antes de finalizar.");
+
+            mostrarTela("todosProdutos");
+
             return;
+
         }
 
-        const nome = document.getElementById("nome").value.trim();
-        const pagamento = document.getElementById("pagamento").value;
 
-        if (!nome || !pagamento) {
-            alert("Preencha os campos obrigatórios.");
-            return;
-        }
+        const dados = new FormData(evento.target);
 
-        let forma = "Pix demonstrativo";
+        const numero =
+            "LN" + Math.floor(100000 + Math.random() * 900000);
 
-        if (pagamento === "debito") {
-            forma = "Cartão de débito demonstrativo";
-        }
 
-        if (pagamento === "credito") {
-            const quantidade = Number(
-                document.getElementById("parcelas").value
-            );
+        document.getElementById("mensagemPedido").textContent =
 
-            forma = `Cartão de crédito demonstrativo em ${quantidade}x`;
-        }
+            `Pedido demonstrativo ${numero} registrado para ${dados.get("nome")}. Forma de pagamento selecionada: ${dados.get("pagamento")}.`;
 
-        const totalFinal = calcularTotal();
-
-        document.getElementById("mensagem-confirmacao").textContent =
-            `Obrigada, ${nome}! Pedido demonstrativo nº ${proximoPedido}. ` +
-            `Total: ${moeda(totalFinal)}. Pagamento: ${forma}.`;
-
-        proximoPedido++;
 
         carrinho = [];
-        descontoAtual = 0;
-        cupomAplicado = false;
 
-        atualizarQuantidade();
-        document.getElementById("form-checkout").reset();
+        salvarDados();
 
-        document.getElementById("campo-parcelas")
-            .classList.add("escondida");
+        evento.target.reset();
 
         mostrarTela("confirmacao");
-    }
-);
 
-renderizarProdutos("lista-inicial", produtos.slice(0, 4));
-atualizarQuantidade();
+    });
+
+
+// NEWSLETTER
+document.getElementById("formNewsletter")
+    .addEventListener("submit", evento => {
+
+        evento.preventDefault();
+
+        document.getElementById("feedbackNewsletter").textContent =
+            "Inscrição demonstrativa realizada!";
+
+        evento.target.reset();
+
+    });
+
+
+// CONTATO
+document.getElementById("formContato")
+    .addEventListener("submit", evento => {
+
+        evento.preventDefault();
+
+        document.getElementById("feedbackContato").textContent =
+            "Mensagem demonstrativa enviada com sucesso!";
+
+        evento.target.reset();
+
+    });
+
+
+// INICIAR A LOJA
+renderizarInicio();
+
+atualizarContador();
