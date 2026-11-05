@@ -17,7 +17,10 @@
    ========================================================= */
 // Formato das imagens da pasta "imagens". Use ".svg" para as ilustrações
 // ou troque para ".jpg" quando colocar suas fotos reais (mesmos nomes de arquivo).
-const tipoImagem = ".svg";
+/* =========================================================
+   1. DADOS
+   Para trocar uma foto, mude o caminho em "imagem".
+   ========================================================= */
 
 const produtos = [
   {
@@ -26,7 +29,7 @@ const produtos = [
     descricao: "Vestido midi de tecido leve, com modelagem confortável e alça fina. Perfeito para diversas ocasiões.",
     caracteristicas: "Tecido leve de viscose, forro interno, fecho de zíper nas costas e comprimento midi.",
     cores: ["Rosa", "Vinho", "Bege"], tamanhos: ["PP", "P", "M", "G", "GG"],
-    imagem: "imagens/vestido-midi" + tipoImagem
+    imagem: "imagens/vestido midi.jpg"
   },
   {
     id: 2, nome: "Blusa Cropped", categoria: "roupas", tipo: "Blusas",
@@ -34,7 +37,7 @@ const produtos = [
     descricao: "Blusa cropped básica de algodão, ideal para combinar com calças e saias.",
     caracteristicas: "100% algodão, gola redonda e manga curta.",
     cores: ["Branco", "Rosa"], tamanhos: ["PP", "P", "M", "G"],
-    imagem: "imagens/blusa-cropped" + tipoImagem
+    imagem: "imagens/cropped.jpg"
   },
   {
     id: 3, nome: "Calça Wide Leg", categoria: "roupas", tipo: "Calças",
@@ -42,7 +45,7 @@ const produtos = [
     descricao: "Calça de pernas largas com cintura alta e caimento fluido.",
     caracteristicas: "Cintura alta, bolsos laterais e tecido de alfaiataria leve.",
     cores: ["Bege", "Preto"], tamanhos: ["P", "M", "G", "GG"],
-    imagem: "imagens/calca-wide-leg" + tipoImagem
+    imagem: "imagens/calca wide leg.jpg"
   },
   {
     id: 4, nome: "Jaqueta Jeans", categoria: "roupas", tipo: "Jaquetas",
@@ -50,7 +53,7 @@ const produtos = [
     descricao: "Jaqueta jeans clássica, com lavagem clara e bolsos frontais.",
     caracteristicas: "Jeans com elastano, botões metálicos e dois bolsos.",
     cores: ["Azul"], tamanhos: ["P", "M", "G"],
-    imagem: "imagens/jaqueta-jeans" + tipoImagem
+    imagem: "imagens/jaqueta jeans.jpg"
   },
   {
     id: 5, nome: "Saia Plissada", categoria: "roupas", tipo: "Saias",
@@ -58,7 +61,7 @@ const produtos = [
     descricao: "Saia plissada midi com cós elástico e movimento delicado.",
     caracteristicas: "Poliéster plissado, cós elástico e comprimento midi.",
     cores: ["Rosa", "Bege"], tamanhos: ["PP", "P", "M", "G"],
-    imagem: "imagens/saia-plissada" + tipoImagem
+    imagem: "imagens/saia plissada.webp"
   },
   {
     id: 6, nome: "Macacão Preto", categoria: "roupas", tipo: "Macacões",
@@ -66,15 +69,15 @@ const produtos = [
     descricao: "Macacão pantalona preto, elegante e confortável para o dia a dia.",
     caracteristicas: "Alças ajustáveis, cintura marcada e tecido de crepe.",
     cores: ["Preto"], tamanhos: ["P", "M", "G"],
-    imagem: "imagens/macacao" + tipoImagem
+    imagem: "imagens/macacao preto.jpg"
   },
   {
-    id: 7, nome: "Sandália Salto Bloco", categoria: "calcados", tipo: "Sandálias",
+    id: 7, nome: "Sandália Salto", categoria: "calcados", tipo: "Sandálias",
     preco: 119.90, precoAntigo: null, popularidade: 65, novidade: true,
-    descricao: "Sandália com salto bloco baixo, muito confortável para usar o dia todo.",
+    descricao: "Sandália com salto médio, muito confortável para usar o dia todo.",
     caracteristicas: "Salto de 5 cm, tira ajustável no tornozelo e solado antiderrapante.",
     cores: ["Rosa", "Bege"], tamanhos: ["36", "37", "38", "39"],
-    imagem: "imagens/sandalia" + tipoImagem
+    imagem: "imagens/sandalia.jpg"
   },
   {
     id: 8, nome: "Tênis Casual Branco", categoria: "calcados", tipo: "Tênis",
@@ -82,15 +85,15 @@ const produtos = [
     descricao: "Tênis branco casual, combina com qualquer look.",
     caracteristicas: "Cabedal sintético, palmilha macia e solado de borracha.",
     cores: ["Branco"], tamanhos: ["36", "37", "38", "39"],
-    imagem: "imagens/tenis" + tipoImagem
+    imagem: "imagens/tenis branco.jpg"
   },
   {
-    id: 9, nome: "Bolsa Tracada", categoria: "acessorios", tipo: "Bolsas",
+    id: 9, nome: "Bolsa", categoria: "acessorios", tipo: "Bolsas",
     preco: 99.90, precoAntigo: null, popularidade: 85, novidade: true,
     descricao: "Bolsa estruturada com alça de mão e alça transversal removível.",
     caracteristicas: "Material sintético, fecho com zíper, 24 cm de largura.",
     cores: ["Vinho", "Rosa"], tamanhos: ["Único"],
-    imagem: "imagens/bolsa-tracada" + tipoImagem
+    imagem: "imagens/bolsa.webp"
   },
   {
     id: 10, nome: "Brinco Lua", categoria: "acessorios", tipo: "Joias",
@@ -98,7 +101,7 @@ const produtos = [
     descricao: "Brinco delicado em formato de lua, inspirado na identidade da LUNNA.",
     caracteristicas: "Banhado a ouro, hipoalergênico e fecho tipo tarraxa.",
     cores: ["Rosa"], tamanhos: ["Único"],
-    imagem: "imagens/brinco-lua" + tipoImagem
+    imagem: "imagens/brinco.jpg"
   },
   {
     id: 11, nome: "Gloss Labial", categoria: "beleza", tipo: "Maquiagem",
@@ -106,7 +109,7 @@ const produtos = [
     descricao: "Gloss com brilho intenso e toque hidratante, não é pegajoso.",
     caracteristicas: "Contém 6 ml, fórmula vegana e fragrância suave.",
     cores: ["Rosa"], tamanhos: ["Único"],
-    imagem: "imagens/gloss-labial" + tipoImagem
+    imagem: "imagens/gloss.jpg"
   },
   {
     id: 12, nome: "Hidratante Facial", categoria: "beleza", tipo: "Skincare",
@@ -114,7 +117,7 @@ const produtos = [
     descricao: "Hidratante facial leve, de absorção rápida, para o uso diário.",
     caracteristicas: "Contém 50 g, com ácido hialurônico e fator de proteção 15.",
     cores: ["Branco"], tamanhos: ["Único"],
-    imagem: "imagens/hidratante" + tipoImagem
+    imagem: "imagens/hidratante.jpg"
   }
 ];
 
